@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaHome, FaUser, FaProjectDiagram, FaEnvelope } from 'react-icons/fa';
 
@@ -9,6 +10,17 @@ const navItems = [
 ];
 
 export default function Header({ activeSection, handleNavClick }) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -40 }}
@@ -17,10 +29,12 @@ export default function Header({ activeSection, handleNavClick }) {
         duration: 0.8,
         ease: [0.25, 0.1, 0.25, 1],
       }}
-className="fixed top-0 left-0 right-0 z-100 bg-black/10 backdrop-blur-md" >
-
+      className={`fixed top-0 left-0 right-0 z-100 transition-colors duration-300 ${
+        scrolled ? 'bg-black/10 backdrop-blur-md' : 'bg-transparent'
+      }`}
+    >
       <nav className="max-w-5xl mx-auto px-6 py-4">
-        <ul className="flex space-x-10 justify-center">
+        <ul className="flex space-x-10 justify-center overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent">
           {navItems.map(({ label, icon: Icon, href }) => (
             <li key={label}>
               <a
