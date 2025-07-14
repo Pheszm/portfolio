@@ -28,7 +28,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const sections = ['home', 'about', 'projects', 'contact'];
+    const sections = ['home', 'about', 'portfolio', 'contact'];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 3; 
@@ -72,7 +72,7 @@ export default function Home() {
         <Hero isMounted={isMounted} fadeIn={fadeIn} />
       </section>
 
-      <section id="about">
+      <section id="about" className='pb-20'>
         <About fadeIn={fadeIn} stagger={stagger} />
       </section>
 

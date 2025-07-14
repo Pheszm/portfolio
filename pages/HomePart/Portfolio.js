@@ -1,38 +1,67 @@
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
-export default function Projects({ fadeIn, stagger }) {
-  const projectList = [
-    { name: 'E-Commerce Platform', desc: 'A full-stack online store with payment integration.' },
-    { name: 'Task Manager App', desc: 'A productivity app with real-time collaboration.' },
-  ];
+export default function Portfolio({ fadeIn, stagger }) {
+  const [activeTab, setActiveTab] = useState('Works');
+
+  const tabList = ['Works', 'Certificates', 'Skills'];
 
   return (
     <motion.section
-      id="projects"
+      id="portfolio"
       initial="hidden"
       whileInView="visible"
       variants={stagger}
       viewport={{ once: false, amount: 0.3 }}
-      className="py-20 px-6 bg-gray-800"
+      className="py-16 px-4 sm:px-6 md:px-10 bg-[#010113ff]"
     >
-      <motion.h2 variants={fadeIn} className="text-4xl font-bold mb-12 text-center">
-        Projects
+      <motion.h2
+        variants={fadeIn}
+        className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white pt-20"
+      >
+        Portfolio
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {projectList.map((project, index) => (
-          <motion.div
-            key={index}
-            variants={fadeIn}
-            className="p-6 bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition"
-          >
-            <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
-            <p className="text-gray-300">{project.desc}</p>
-            <a href="#" className="text-blue-400 hover:underline mt-4 inline-block">
-              View Project
-            </a>
-          </motion.div>
-        ))}
-      </div>
+
+      <motion.div
+        variants={fadeIn}
+        className="p-4 sm:p-6 rounded-lg shadow-lg bg-[#03031A] transition-all"
+      >
+        <nav className="flex flex-wrap justify-center sm:justify-evenly gap-4 sm:gap-8 mb-4">
+          {tabList.map((tab, index) => (
+            <motion.button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className={`whitespace-nowrap py-2 md:px-40 border-b-2 text-sm sm:text-base font-medium transition-all duration-300 ${
+                activeTab === tab
+                  ? 'border-blue-500 text-blue-400'
+                  : 'border-transparent text-gray-300 hover:text-gray-400 hover:border-gray-300'
+              }`}
+            >
+              {tab}
+            </motion.button>
+          ))}
+        </nav>
+
+        {/* Example of conditional content */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-gray-300 mt-6"
+        >
+          <p className="text-center text-sm sm:text-base">
+            {activeTab === 'Works' && 'Showcasing various projects and case studies.'}
+            {activeTab === 'Certificates' && 'A collection of my professional certifications.'}
+            {activeTab === 'Skills' && 'A breakdown of technical and soft skills.'}
+          </p>
+        </motion.div>
+      </motion.div>
     </motion.section>
   );
 }
