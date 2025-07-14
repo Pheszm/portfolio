@@ -5,7 +5,7 @@ import Script from 'next/script';
 
 export default function Hero({ isMounted, fadeIn }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const phrases = ['Web Developer', 'Graphic Designer'];
+  const phrases = ['Web Developer', 'Graphic Designer', ' IT Professional', 'Game Developer'];
 
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
@@ -58,10 +58,10 @@ export default function Hero({ isMounted, fadeIn }) {
         className="h-screen flex items-center justify-center relative overflow-hidden"
         ref={vantaRef}
       >
-        <div className="flex flex-col md:flex-row items-center justify-between h-full w-full px-20 gap-20 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-center h-full w-full px-20 gap-0 relative z-10">
           {/* Text */}
           <div className="order-2 md:order-1 md:w-1/2 text-center md:text-left space-y-3">
-            <motion.h1 variants={fadeIn} className="text-2xl md:text-4xl font-semibold">
+            <motion.h1 variants={fadeIn} className="text-2xl pt-5 md:pt-0 md:text-4xl font-semibold">
               <span className="text-white">I'M </span>
               <span className="text-blue-500">CARL WYNE S. GALLARDO</span>
             </motion.h1>
@@ -80,7 +80,25 @@ export default function Hero({ isMounted, fadeIn }) {
             src="/GraduationPicture.png"
             alt="Graduation Picture"
             className="order-1 md:order-2 md:w-1/2 w-90 md:w-130 rounded-lg object-cover"
+            style={{
+              animation: 'float 5s ease-in-out infinite',
+            }}
           />
+            <style jsx>{`
+              @keyframes float {
+                0% {
+                  transform: translateY(0);
+                }
+                50% {
+                  transform: translateY(-10px);
+                }
+                100% {
+                  transform: translateY(0);
+                }
+              }
+            `}
+            </style>
+          <img/>
         </div>
       </motion.section>
     </>

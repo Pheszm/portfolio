@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Header from './Header';
 import Hero from './Hero';
 import About from './About';
-import Projects from './Projects';
+import Portfolio from './Portfolio';
 import Contact from './Contact';
 import Footer from './Footer';
 
@@ -62,7 +62,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans">
+    <div className="min-h-screen bg-[#03031A] text-white font-sans">
+
+      <title>Portfolio | Carl Wyne S. Gallardo</title>
 
       <Header activeSection={activeSection} handleNavClick={handleNavClick} />
 
@@ -74,8 +76,8 @@ export default function Home() {
         <About fadeIn={fadeIn} stagger={stagger} />
       </section>
 
-      <section id="projects">
-        <Projects fadeIn={fadeIn} stagger={stagger} />
+      <section id="portfolio">
+        <Portfolio fadeIn={fadeIn} stagger={stagger} />
       </section>
 
       <section id="contact">
