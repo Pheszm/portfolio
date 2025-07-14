@@ -17,15 +17,13 @@ export default function Portfolio({ fadeIn, stagger }) {
     >
       <motion.h2
         variants={fadeIn}
-        className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white pt-20"
-      >
+        className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white pt-20">
         Portfolio
       </motion.h2>
 
       <motion.div
         variants={fadeIn}
-        className="p-4 sm:p-6 rounded-lg shadow-lg bg-[#03031A] transition-all"
-      >
+        className="p-4 sm:p-6 rounded-lg shadow-lg bg-[#03031A] ">
         <nav className="flex flex-wrap justify-center sm:justify-evenly gap-4 sm:gap-8 mb-4">
           {tabList.map((tab, index) => (
             <motion.button
@@ -33,7 +31,7 @@ export default function Portfolio({ fadeIn, stagger }) {
               onClick={() => setActiveTab(tab)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className={`whitespace-nowrap py-2 md:px-40 border-b-2 text-sm sm:text-base font-medium transition-all duration-300 ${
@@ -47,21 +45,15 @@ export default function Portfolio({ fadeIn, stagger }) {
           ))}
         </nav>
 
-        {/* Example of conditional content */}
-        <motion.div
-          key={activeTab}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="text-gray-300 mt-6"
-        >
+        <div className="text-gray-300 mt-6">
           <p className="text-center text-sm sm:text-base">
             {activeTab === 'Works' && 'Showcasing various projects and case studies.'}
             {activeTab === 'Certificates' && 'A collection of my professional certifications.'}
             {activeTab === 'Skills' && 'A breakdown of technical and soft skills.'}
           </p>
-        </motion.div>
+        </div>
       </motion.div>
+
     </motion.section>
   );
 }
