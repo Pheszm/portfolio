@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import Works from './WorksNav/main';
 
 export default function Portfolio({ fadeIn, stagger }) {
   const [activeTab, setActiveTab] = useState('Works');
 
-  const tabList = ['Works', 'Certificates', 'Skills'];
+  const tabList = ['Works', 'Awards/Certificates', 'Skills'];
 
   return (
     <motion.section
@@ -46,11 +47,11 @@ export default function Portfolio({ fadeIn, stagger }) {
         </nav>
 
         <div className="text-gray-300 mt-6">
-          <p className="text-center text-sm sm:text-base">
-            {activeTab === 'Works' && 'Showcasing various projects and case studies.'}
-            {activeTab === 'Certificates' && 'A collection of my professional certifications.'}
+
+            {activeTab === 'Works' && <Works/>}
+            {activeTab === 'Awards/Certificates' && 'A collection of my professional certifications.'}
             {activeTab === 'Skills' && 'A breakdown of technical and soft skills.'}
-          </p>
+
         </div>
       </motion.div>
 

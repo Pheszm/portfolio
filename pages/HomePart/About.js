@@ -73,7 +73,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaCode className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Web Development
@@ -84,7 +84,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaPaintBrush className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Graphic Design
@@ -95,7 +95,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaMicrochip className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Computer Hardware
@@ -106,7 +106,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaDesktop className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Game Development
@@ -117,7 +117,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaLaptopCode className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Programming
@@ -128,7 +128,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaBasketballBall className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Basketball
@@ -139,7 +139,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaGamepad className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Video Games
@@ -150,7 +150,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaMicrophone className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Singing
@@ -161,7 +161,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaMusic className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Music Listening
@@ -172,7 +172,7 @@ export default function About({ fadeIn, stagger }) {
 
           <div className="relative inline-flex h-20 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ffffff_0%,#0508bcff_50%,#ffffff_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full items-center justify-center rounded-sm bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
               <FaVideo className="text-3xl mr-4 flex-shrink-0 text-white" />
               <span className="text-sm whitespace-nowrap overflow-hidden text-ellipsis text-white">
                 Content Create
