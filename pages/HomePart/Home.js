@@ -72,7 +72,7 @@ export default function Home() {
         <Hero isMounted={isMounted} fadeIn={fadeIn} />
       </section>
 
-      <section id="about" className='pb-20'>
+      <section id="about">
         <About fadeIn={fadeIn} stagger={stagger} />
       </section>
 

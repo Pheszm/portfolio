@@ -18,7 +18,7 @@ export default function Portfolio({ fadeIn, stagger }) {
     >
       <motion.h2
         variants={fadeIn}
-        className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white pt-20">
+        className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white pt-7">
         Portfolio
       </motion.h2>
 

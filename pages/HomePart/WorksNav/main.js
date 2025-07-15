@@ -27,6 +27,15 @@ const projectList = [
         badgeClass: "bg-violet-900",
         image: "/WorksAssets/SpinfinityProfile.jpg",
         link: "https://www.canva.com/design/DAFx_fd-Dco/7mCD5q3E1j-ae2k0_nj-Ug/view?utm_content=DAFx_fd-Dco&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h64a2df2efd"
+    },
+    {
+        id: 4,
+        title: "Arcadia",
+        description: "ARCADIA is an educational Scratch game featuring mini-games Space Math, Hangman, and MoreLess that build math and problem-solving through challenges.",
+        category: "GAME",
+        badgeClass: "bg-green-900",
+        image: "/WorksAssets/AcadiaProfile.jpg",
+        link: "https://www.canva.com/design/DAGtO4nXGfQ/6reZLP4ZbdhitSl7mbKmzA/view?utm_content=DAGtO4nXGfQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h38e3a09315"
     }
 ];
 

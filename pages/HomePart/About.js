@@ -14,7 +14,7 @@ export default function About({ fadeIn, stagger }) {
         className="py-20 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-center pt-30"
       >
         {/* Left Side (Text) */}
-        <motion.div className="lg:w-1/2 mb-8 lg:mb-0">
+        <motion.div className="lg:w-1/2 mb-8 lg:mb-0 order-2 md:order-1">
           <motion.h2
             variants={fadeIn}
             className="text-4xl font-bold mb-8 text-center lg:text-left text-white pt-5"
@@ -33,7 +33,7 @@ export default function About({ fadeIn, stagger }) {
         {/* Right Side (Image) */}
         <motion.div
           variants={fadeIn}
-          className="lg:w-1/2 mb-8 lg:mb-0 flex justify-center"
+          className="lg:w-1/2 mb-8 lg:mb-0 flex justify-center order-1 md:order-2"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1, scale: 1.1 }}
           transition={{ duration: 1 }}
@@ -53,7 +53,7 @@ export default function About({ fadeIn, stagger }) {
         whileInView="visible"
         variants={stagger}
         viewport={{ once: false, amount: 0.3 }}
-        className="py-20 px-6 max-w-7xl mx-auto"
+        className="pt-10 pb-20 px-6 max-w-7xl mx-auto"
       >
 
       <motion.h3
