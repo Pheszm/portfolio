@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import Works from './WorksNav/main';
+import Works from './PortfolioNav/Works';
+import Skills from './PortfolioNav/Skills';
+
 
 export default function Portfolio({ fadeIn, stagger }) {
   const [activeTab, setActiveTab] = useState('Works');
@@ -50,7 +52,7 @@ export default function Portfolio({ fadeIn, stagger }) {
 
             {activeTab === 'Works' && <Works/>}
             {activeTab === 'Awards/Certificates' && 'A collection of my professional certifications.'}
-            {activeTab === 'Skills' && 'A breakdown of technical and soft skills.'}
+            {activeTab === 'Skills' && <Skills/>}
 
         </div>
       </motion.div>
