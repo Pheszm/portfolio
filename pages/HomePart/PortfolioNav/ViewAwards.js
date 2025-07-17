@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 export default function ViewAwards({ award, onClose }) {
+    if (!award) return null;
+    
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const nextImage = () => {
