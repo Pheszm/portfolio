@@ -4,6 +4,7 @@ const projectList = [
     {
         id: 1,
         title: "Roblox Balingasag",
+        year: "2025",
         description: "A replica of Balingasag, Misamis Oriental, developed on the Roblox platform using its built-in tools.",
         category: "GAME",
         badgeClass: "bg-green-900",
@@ -13,6 +14,7 @@ const projectList = [
     {
         id: 2,
         title: "Library Book Lending List",
+        year: "2022",
         description: "A simple Python program that helps our High School Library staff manage book lending and records.",
         category: "Console App",
         badgeClass: "bg-yellow-900",
@@ -22,6 +24,7 @@ const projectList = [
     {
         id: 3,
         title: "Spinfinity",
+        year: "2023",
         description: ".NET C# tool that makes picking random winners easy and fun. Whether for a contest, raffle, or any event.",
         category: "Windows App",
         badgeClass: "bg-violet-900",
@@ -31,6 +34,7 @@ const projectList = [
     {
         id: 4,
         title: "Arcadia",
+        year: "2021",
         description: "ARCADIA is an educational Scratch game featuring mini-games Space Math, Hangman, and MoreLess that build math and problem-solving through challenges.",
         category: "GAME",
         badgeClass: "bg-green-900",
@@ -88,7 +92,10 @@ export default function Works() {
                     >
                         <img src={project.image} alt={project.title} className="w-30 h-30" />
                         <span className="flex flex-col items-start text-white text-sm">
-                            <h2 className="text-lg">{project.title}</h2>
+                            <span className='flex gap-2 items-center'>
+                                <h2 className="text-lg">{project.title}</h2>
+                                <p className='text-gray-300 text-md'>({project.year})</p>
+                            </span>
                             <p className='text-gray-400 text-md'>{project.description}</p>
                             <p className={`${project.badgeClass} rounded-full px-4 mt-3 text-gray-300`}>{project.category}</p>
                         </span>
@@ -106,7 +113,7 @@ export default function Works() {
                         key={i + 1}
                         onClick={() => setCurrentPage(i + 1)}
                         className={`px-3 py-1 rounded ${
-                            currentPage === i + 1 ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-400'
+                            currentPage === i + 1 ? 'bg-blue-900 text-gray-200' : 'bg-gray-800 text-gray-400'
                         }`}
                     >
                         {i + 1}

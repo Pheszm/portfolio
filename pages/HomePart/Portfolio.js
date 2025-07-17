@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React, { useState } from 'react';
 import Works from './PortfolioNav/Works';
 import Skills from './PortfolioNav/Skills';
+import Awards from './PortfolioNav/Awards';
 
 
 export default function Portfolio({ fadeIn, stagger }) {
@@ -51,7 +52,7 @@ export default function Portfolio({ fadeIn, stagger }) {
         <div className="text-gray-300 mt-6">
 
             {activeTab === 'Works' && <Works/>}
-            {activeTab === 'Awards/Certificates' && 'A collection of my professional certifications.'}
+            {activeTab === 'Awards/Certificates' && <Awards/>}
             {activeTab === 'Skills' && <Skills/>}
 
         </div>
