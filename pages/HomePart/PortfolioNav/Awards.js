@@ -7,7 +7,7 @@ const awardList = [
         category: "School Awards",
         title: "3rd Year BSIT Deans List Award",
         shortdescription: "Deanslist",
-        description: "I was Awarded as Deanslist",
+        description: "The 3rd Year BSIT Dean’s List Award honors students in the Bachelor of Science in Information Technology program who have achieved exceptional academic performance in their third year, maintaining high grades and a strong GPA. It recognizes their dedication and excellence in their studies.",
         year: "2022",
         image: ["/AwardsAssets/TechnoCert.jpg", "MyMedals.png"],
     },
@@ -19,6 +19,15 @@ const awardList = [
         description: "I took the Smart Technopreneurship 101 certification course in 2023 through TESDA Online and have just been awarded the certificate",
         year: "2023",
         image: ["/AwardsAssets/TechnoCert.jpg"],
+    },
+    {
+        id: 3,
+        category: "Certificates",
+        title: "Google I/O Extended 2025 Certificate of Participation",
+        shortdescription: "Google I/O Extended 2025",
+        description: "The **Google I/O Extended 2025 Certificate of Participation** for AI, Firebase, and Google Updates recognizes attendees who engage with the latest advancements in Google technologies, including updates to AI tools, Firebase features, and other Google products. Participants dive into how these innovations can be applied to improve app development, data management, and machine learning, while also staying up-to-date with Google's evolving ecosystem and new features unveiled at the Google I/O event.",
+        year: "2025",
+        image: ["/AwardsAssets/GoogleIO/GoogleIOCertificate.png", "/AwardsAssets/GoogleIO/GoogleIO_Documentation_1.jpg", "/AwardsAssets/GoogleIO/GoogleIO_Documentation_2.jpg", "/AwardsAssets/GoogleIO/GoogleIO_Documentation_3.jpg", "/AwardsAssets/GoogleIO/GoogleIO_Documentation_4.jpg"],
     },
 
 ];

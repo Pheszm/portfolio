@@ -50,7 +50,7 @@ export default function ViewAwards({ award, onClose }) {
                     <img
                         src={award.image[currentImageIndex]}
                         alt={`Slide ${currentImageIndex + 1}`}
-                        className="rounded-lg max-h-[80vh] w-auto object-contain"
+                        className="rounded-lg max-h-[70vh] w-auto object-contain"
                     />
 
                     {award.image.length > 1 && (
