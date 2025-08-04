@@ -93,10 +93,16 @@ const skills = [
     category: ['WindowsApp', 'Games'],
   },
   {
-    name: 'ChatGPT',
-    svg: 'https://static.vecteezy.com/system/resources/thumbnails/021/059/825/small_2x/chatgpt-logo-chat-gpt-icon-on-green-background-free-vector.jpg',
+    name: 'AI Prompting',
+    svg: 'https://i.pinimg.com/736x/2d/ca/af/2dcaaf0ab1045c20d360fc32cf2ea285.jpg',
     level: 'Expert',
     category: ['WebDev', 'WindowsApp', 'Games'],
+  },
+    {
+    name: 'Arduino',
+    svg: 'https://cdn.worldvectorlogo.com/logos/arduino-1.svg',
+    level: 'Expert',
+    category: ['WebDev', 'WindowsApp', 'Hardware'],
   },
   {
     name: 'Canva',
@@ -113,7 +119,7 @@ const skills = [
   {
     name: 'Networking',
     svg: 'https://cdn-icons-png.flaticon.com/512/1086/1086644.png',
-    level: 'Intermediate',
+    level: 'Advance',
     category: ['Hardware'],
   },
 ];
