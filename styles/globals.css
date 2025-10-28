@@ -34,7 +34,7 @@ body {
 /* Width of the scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
+  height: 10px;
 }
 
 /* Track (background of the scrollbar) */
@@ -43,13 +43,27 @@ body {
   border-radius: 10px;
 }
 
-/* The draggable thumb */
+/* The draggable thumb with animated gradient */
 ::-webkit-scrollbar-thumb {
-  background-color: #00055e;
+  background: linear-gradient(135deg, #60a5fa, #22d3ee, #3b82f6);
+  background-size: 200% 200%;
   border-radius: 10px;
+  animation: gradientScroll 3s ease infinite;
 }
 
 /* Thumb hover state */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #02087c;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4, #60a5fa);
+  background-size: 200% 200%;
+  animation: gradientScroll 2s ease infinite;
+}
+
+/* Gradient animation for scrollbar */
+@keyframes gradientScroll {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
