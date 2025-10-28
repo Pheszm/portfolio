@@ -143,7 +143,7 @@ export default function ViewAwardsModal({ award, onClose }) {
                 {/* Content */}
                 <div className="p-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
                     {/* Title & Info */}
-                    <div className="mb-6 pr-24">
+                    <div className="mb-6">
                         <div className="flex items-start gap-3 mb-4">
                             <div className={`p-3 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0`}>
                                 <CategoryIcon className="text-white text-2xl" />

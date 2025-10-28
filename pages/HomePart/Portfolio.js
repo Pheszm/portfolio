@@ -31,12 +31,8 @@ export default function Portfolio({ fadeIn, stagger }) {
   const ActiveComponent = tabList.find(tab => tab.name === activeTab)?.component;
 
   return (
-    <motion.section
+    <section
       id="portfolio"
-      initial="hidden"
-      whileInView="visible"
-      variants={stagger}
-      viewport={{ once: false, amount: 0.3 }}
       className="py-16 px-4 sm:px-6 md:px-10 bg-[#010113ff]"
     >
       <motion.h2
@@ -74,21 +70,13 @@ export default function Portfolio({ fadeIn, stagger }) {
 
         {/* Tab Content with Lazy Loading */}
         <div className="text-gray-300 mt-6 min-h-[400px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Suspense fallback={<LoadingSpinner />}>
-                {ActiveComponent && <ActiveComponent />}
-              </Suspense>
-            </motion.div>
-          </AnimatePresence>
+          <div key={activeTab}>
+            <Suspense fallback={<LoadingSpinner />}>
+              {ActiveComponent && <ActiveComponent />}
+            </Suspense>
+          </div>
         </div>
       </motion.div>
-    </motion.section>
+    </section>
   );
 }
