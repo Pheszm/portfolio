@@ -5,7 +5,7 @@ export default function Contact({ fadeIn, stagger }) {
   const contactInfo = [
     { icon: FaEnvelope, label: 'Email', value: 'carlwynegallardo@gmail.com', href: 'mailto:carlwynegallardo@gmail.com' },
     { icon: FaPhone, label: 'Phone', value: '+63 967 218 2163', href: 'tel:+639672182163' },
-    { icon: FaMapMarkerAlt, label: 'Location', value: 'Balingasag, Philippines', href: '#' },
+    { icon: FaMapMarkerAlt, label: 'Location', value: 'Brgy. 5, Balingasag Mis. Or. Philippines', href: '#' },
   ];
 
   return (

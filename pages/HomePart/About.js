@@ -3,8 +3,8 @@ import { FaDesktop, FaBasketballBall, FaCode, FaGamepad, FaPaintBrush, FaMicroch
 
 export default function About({ fadeIn, stagger }) {
   const stats = [
-    { label: 'Years Experience', value: '2+', icon: FaAward },
-    { label: 'Projects Completed', value: '15+', icon: FaCode },
+    { label: 'Awards', value: '10+', icon: FaAward },
+    { label: 'Projects Completed', value: '10+', icon: FaCode },
     { label: 'Technologies', value: '10+', icon: FaLaptopCode },
   ];
 
@@ -44,7 +44,7 @@ export default function About({ fadeIn, stagger }) {
               {/* Image */}
               <div className="relative">
                 <img 
-                  src="/GraduationPicture.png" 
+                  src="/CarlProfessionPic.png" 
                   alt="Carl Wyne S. Gallardo" 
                   className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-cover rounded-3xl group-hover:border-blue-400/30 transition-all duration-500"
                 />
@@ -60,13 +60,13 @@ export default function About({ fadeIn, stagger }) {
             {/* Education Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 border border-blue-400/30 rounded-full backdrop-blur-sm">
               <FaGraduationCap className="text-cyan-400 text-sm" />
-              <span className="text-xs md:text-sm text-blue-300 font-medium">IT Graduate</span>
+              <span className="text-xs md:text-sm text-blue-300 font-medium">IT Student</span>
             </div>
 
             {/* Bio */}
             <div className="space-y-3">
               <p className="text-sm md:text-base text-gray-300 leading-relaxed text-center lg:text-left">
-                I am an <span className="text-cyan-400 font-semibold">Information Technology graduate</span> from <span className="text-blue-400 font-semibold">St. Rita's College of Balingasag</span>, with a passion for Web Development and experience in various web technologies. I also have skills in Arduino, Graphic Design, Computer Hardware, and Game Development.
+                I am an <span className="text-cyan-400 font-semibold">Information Technology student</span> from <span className="text-blue-400 font-semibold">St. Rita's College of Balingasag</span>, with a passion for Web Development and experience in various web technologies. I also have skills in Arduino, Graphic Design, Computer Hardware, and Game Development.
               </p>
               <p className="text-sm md:text-base text-gray-300 leading-relaxed text-center lg:text-left">
                 I enjoy learning new things and improving my skills related to the field. I am <span className="text-cyan-400 font-semibold">adaptable</span> and able to quickly adjust to the environment. I work well under pressure and am always looking for opportunities to grow and contribute to projects that combine <span className="text-blue-400 font-semibold">creativity, technology, and problem-solving</span>.

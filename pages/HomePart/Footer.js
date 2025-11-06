@@ -6,9 +6,9 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
-    { icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: FaFacebook, href: 'https://facebook.com', label: 'Facebook' },
+    { icon: FaGithub, href: 'https://github.com/Pheszm', label: 'GitHub' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/carl-gallardo-138947354/', label: 'LinkedIn' },
+    { icon: FaFacebook, href: 'https://www.facebook.com/itz.carlg', label: 'Facebook' },
   ];
 
   return (
