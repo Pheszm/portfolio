@@ -122,12 +122,6 @@ const skills = [
     category: ['WindowsApp', 'Games'],
   },
   {
-    name: 'AI Prompting',
-    svg: 'https://i.pinimg.com/736x/2d/ca/af/2dcaaf0ab1045c20d360fc32cf2ea285.jpg',
-    level: 'Expert',
-    category: ['WebDev', 'WindowsApp', 'Games'],
-  },
-  {
     name: 'Arduino',
     svg: 'https://cdn.worldvectorlogo.com/logos/arduino-1.svg',
     level: 'Expert',

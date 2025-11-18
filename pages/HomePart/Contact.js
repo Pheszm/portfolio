@@ -69,7 +69,7 @@ export default function Contact({ fadeIn, stagger }) {
         {/* Right Side - Contact Form */}
         <motion.div variants={fadeIn}>
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 md:p-8">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Send Me a Message</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Send Me a Message <span className="text-gray-400 text-sm">(Currently in Development )</span></h3>
             
             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
 
@@ -81,7 +81,7 @@ export default function Contact({ fadeIn, stagger }) {
                 <input
                   type="email"
                   id="email"
-                  placeholder="john@example.com"
+                  placeholder="jdoe@example.com"
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300"
                   required
                 />

@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaArrowDown } from 'react
 
 export default function Hero({ isMounted, fadeIn }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const phrases = ['Web Developer', 'Graphic Designer', 'IT Professional', 'Game Developer'];
+  const phrases = ['Web Developer', 'Graphic Designer', 'IT Student', 'Game Developer'];
 
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
@@ -164,9 +164,7 @@ export default function Hero({ isMounted, fadeIn }) {
                 variants={itemVariants}
                 className="text-gray-300 text-xs md:text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 px-4 lg:px-0"
               >
-                Passionate about crafting innovative digital solutions that merge creativity with cutting-edge technology. 
-                Let's build something amazing together.
-              </motion.p>
+                Motivated to help push the boundaries of technology and innovation by putting my skills and experience into action.              </motion.p>
 
               {/* CTA Buttons */}
               <motion.div
@@ -256,19 +254,7 @@ export default function Hero({ isMounted, fadeIn }) {
           </div>
         </motion.div>
 
-        {/* Scroll Down Indicator */}
-        <motion.button
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.8 }}
-          onClick={scrollToNext}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/50 hover:text-white/90 transition-colors duration-300 cursor-pointer group"
-        >
-          <span className="text-xs font-medium tracking-wider uppercase">Scroll Down</span>
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2 group-hover:border-white/60 transition-colors">
-            <div className="w-1 h-2 bg-white/60 rounded-full animate-bounce" />
-          </div>
-        </motion.button>
+
 
         {/* Enhanced floating animation */}
         <style jsx>{`

@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaFacebook, FaHeart, FaArrowUp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaArrowUp } from 'react-icons/fa';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -8,7 +8,7 @@ export default function Footer() {
   const socialLinks = [
     { icon: FaGithub, href: 'https://github.com/Pheszm', label: 'GitHub' },
     { icon: FaLinkedin, href: 'https://www.linkedin.com/in/carl-gallardo-138947354/', label: 'LinkedIn' },
-    { icon: FaFacebook, href: 'https://www.facebook.com/itz.carlg', label: 'Facebook' },
+    { icon: FaEnvelope, href: 'mailto:carlwynegallardo@gmail.com', label: 'Facebook' },
   ];
 
   return (
@@ -32,7 +32,7 @@ export default function Footer() {
                 Carl Wyne S. Gallardo
               </span>
             </h3>
-            <p className="text-gray-400 text-sm">Web Developer | Designer | IT Professional</p>
+            <p className="text-gray-400 text-sm">Web Developer | Designer | IT Student</p>
           </div>
 
           {/* Social Links */}

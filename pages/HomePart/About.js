@@ -46,7 +46,7 @@ export default function About({ fadeIn, stagger }) {
                 <img 
                   src="/CarlProfessionPic.png" 
                   alt="Carl Wyne S. Gallardo" 
-                  className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-cover rounded-3xl group-hover:border-blue-400/30 transition-all duration-500"
+                  className="z-1 relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-cover rounded-full group-hover:border-blue-400/30 transition-all duration-500"
                 />
                 {/* Decorative elements */}
                 <div className="absolute -top-3 -right-3 w-16 h-16 bg-blue-400/20 rounded-full blur-xl animate-pulse" />

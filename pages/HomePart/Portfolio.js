@@ -20,12 +20,12 @@ const LoadingSpinner = () => (
 );
 
 export default function Portfolio({ fadeIn, stagger }) {
-  const [activeTab, setActiveTab] = useState('Works');
+  const [activeTab, setActiveTab] = useState('Works/Projects');
 
   const tabList = [
-    { name: 'Works', icon: FaBriefcase, component: Works },
+    { name: 'Works/Projects', icon: FaBriefcase, component: Works },
     { name: 'Awards/Certificates', icon: FaTrophy, component: Awards },
-    { name: 'Skills', icon: FaCode, component: Skills },
+    { name: 'Skills/Technologies', icon: FaCode, component: Skills },
   ];
 
   const ActiveComponent = tabList.find(tab => tab.name === activeTab)?.component;

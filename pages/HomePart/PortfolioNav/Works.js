@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGamepad, FaCode, FaDesktop, FaTerminal, FaPalette, FaExternalLinkAlt, FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import ViewWorksModal from './ViewWorksModal';
 
 const categoryConfig = {
     "GAME": {
@@ -38,21 +39,23 @@ const categoryConfig = {
 const projectList = [
     {
         id: 1,
-        title: "Roblox Balingasag",
+        title: "SBI Graphic Designer",
         year: "2025",
-        description: "A replica of Balingasag, Misamis Oriental, developed on the Roblox platform using its built-in tools.",
-        category: "GAME",
-        image: "/WorksAssets/RobloxProfile.png",
-        link: "https://www.canva.com/design/DAGtMOSJ7vc/nr29ThSaFIGaWOdOXlPByQ/view?utm_content=DAGtMOSJ7vc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb7f11bc843"
+        description: "SBI runs several businesses, including a Lying-In clinic, Lechon, and an Animal Bite Center and Vaccination Clinic. I work with them on commission as a graphic designer. I create clear posters and graphics for marketing and social media posts. I keep the style consistent for each business so people can recognize the brand. Samples of my work are shown below.",
+        category: "Graphics Designs",
+        image: "/WorksAssets/SBI_imgs/1.jpg",
+        imagesFolder: "SBI_imgs"
     },
     {
         id: 2,
-        title: "Library Book Lending List",
-        year: "2022",
-        description: "A simple Python program that helps our High School Library staff manage book lending and records.",
-        category: "Console App",
-        image: "/WorksAssets/LLLProfile.jpg",
-        link: "https://www.canva.com/design/DAFp7eiXGVc/1HhkjF9kP5S-T0FCyZsOGQ/view?utm_content=DAFp7eiXGVc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=he34706880e"
+        title: "Roblox Balingasag",
+        year: "2025",
+        description: "A Roblox game that recreates key places in Balingasag, Misamis Oriental. I built the map and basic interactions using Roblox Studio tools. I am the solo developer and the owner of this game. The documentation link is attached, and the images below show sample scenes from the game.",
+        category: "GAME",
+        image: "/WorksAssets/RobloxProfile.png",
+        link: "https://www.canva.com/design/DAGtMOSJ7vc/nr29ThSaFIGaWOdOXlPByQ/view?utm_content=DAGtMOSJ7vc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb7f11bc843",
+        // Folder inside public/WorksAssets to auto-load images in the modal
+        imagesFolder: "Roblox_bali_imgs"
     },
     {
         id: 3,
@@ -61,7 +64,8 @@ const projectList = [
         description: ".NET C# tool that makes picking random winners easy and fun. Whether for a contest, raffle, or any event.",
         category: "Windows App",
         image: "/WorksAssets/SpinfinityProfile.jpg",
-        link: "https://www.canva.com/design/DAFx_fd-Dco/7mCD5q3E1j-ae2k0_nj-Ug/view?utm_content=DAFx_fd-Dco&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h64a2df2efd"
+        link: "https://www.canva.com/design/DAFx_fd-Dco/7mCD5q3E1j-ae2k0_nj-Ug/view?utm_content=DAFx_fd-Dco&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h64a2df2efd",
+        imagesFolder: "Roblox_bali_imgs"
     },
     {
         id: 4,
@@ -71,7 +75,54 @@ const projectList = [
         category: "GAME",
         image: "/WorksAssets/AcadiaProfile.jpg",
         link: "https://www.canva.com/design/DAGtO4nXGfQ/6reZLP4ZbdhitSl7mbKmzA/view?utm_content=DAGtO4nXGfQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h38e3a09315"
-    }
+    },
+    {
+        id: 5,
+        title: "ManageIT",
+        year: "2024",
+        description: "Designed and developed ManageIT, a web-based AVR inventory and reservation system using vanilla PHP and CSS. Delivered a full-stack workflow with custom API–based QR code scanning to simplify check-ins and asset tracking, enabling students to reserve items efficiently and staff to manage inventory with clarity.",
+        category: "Web App",
+        image: "/WorksAssets/ManageIT_imgs/1.png",
+        link: "https://www.canva.com/design/DAFx_fd-Dco/7mCD5q3E1j-ae2k0_nj-Ug/view?utm_content=DAFx_fd-Dco&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h64a2df2efd",
+        imagesFolder: "ManageIT_imgs"    
+    },
+    {
+        id: 6,
+        title: "Library Book Lending List",
+        year: "2022",
+        description: "A simple Python program that helps our High School Library staff manage book lending and records.",
+        category: "Console App",
+        image: "/WorksAssets/LBLL_imgs/LLLProfile.jpg",
+        link: "https://www.canva.com/design/DAFp7eiXGVc/1HhkjF9kP5S-T0FCyZsOGQ/view?utm_content=DAFp7eiXGVc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=he34706880e",
+        imagesFolder: "LBLL_imgs"
+    },
+    {
+        id: 7,
+        title: "SRCB AVR SYSTEM",
+        year: "2024",
+        description: "A web-based AVR system built with Next.js and Prisma DB, featuring a modern React UI and a robust ORM-backed data layer for reliable, maintainable data operations. I was the full-stack developer on this project.",
+        category: "Web App",
+        image: "/WorksAssets/Lablog_imgs/1.png",
+        imagesFolder: "Lablog_imgs"
+    },
+    {
+        id: 8,
+        title: "Hotel Reservation System",
+        year: "2024",
+        description: "A hotel reservation platform built with vanilla PHP. I served as the Frontend Developer and Graphics Designer, crafting the UI and visual assets.",
+        category: "Web App",
+        image: "/WorksAssets/HRS_imgs/HRS1.png",
+        imagesFolder: "HRS_imgs"
+    },
+    {
+        id: 9,
+        title: "IT Departamental Shirt Design",
+        year: "2025",
+        description: "I was assigned to design our IT Departmental shirt for Intramurals 2025. I handled the full graphics process—from concept and typography to color palette and print‑ready layout—to deliver a bold, cohesive design that represents the department’s identity.",
+        category: "Graphics Designs",
+        image: "/WorksAssets/Itdept2025_imgs/1.jpg",
+        imagesFolder: "Itdept2025_imgs"
+    },
 ];
 
 const itemsPerPage = 6;
@@ -88,6 +139,7 @@ const categories = [
 export default function Works() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedWork, setSelectedWork] = useState(null);
 
     const filteredProjects = selectedCategory
         ? projectList.filter(project => project.category === selectedCategory)
@@ -112,6 +164,7 @@ export default function Works() {
     return (
         <div className='w-full flex flex-col items-center px-2 md:px-4'>
             {/* Category Filter Tabs */}
+            <p className="text-sm text-gray-400 mb-6">(This is just a selection of my work—I'm still compiling more.)</p>
             <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 w-full">
                 {categories.map((cat) => {
                     const isActive = selectedCategory === cat.value;
@@ -167,7 +220,7 @@ export default function Works() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: index * 0.1, duration: 0.3 }}
                                 whileHover={{ y: -8, scale: 1.02 }}
-                                onClick={() => window.open(project.link, '_blank')}
+                                onClick={() => setSelectedWork(project)}
                                 className={`group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden cursor-pointer border ${config.borderColor} hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300`}
                             >
                                 {/* Image Section */}
@@ -271,6 +324,15 @@ export default function Works() {
                     </motion.button>
                 </div>
             )}
+            {/* Work Details Modal */}
+            <AnimatePresence>
+                {selectedWork && (
+                    <ViewWorksModal
+                        work={selectedWork}
+                        onClose={() => setSelectedWork(null)}
+                    />
+                )}
+            </AnimatePresence>
         </div>
     );
 }
