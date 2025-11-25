@@ -84,12 +84,10 @@ export default function Hero({ isMounted, fadeIn }) {
   };
 
   const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/Gallardo_CV.pdf';
-    link.download = 'Gallardo_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (typeof window !== 'undefined') {
+      // Open the API route that streams the PDF inline (dompdf-style)
+      window.open('/api/cv', '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
