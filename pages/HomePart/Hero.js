@@ -233,9 +233,9 @@ export default function Hero({ isMounted, fadeIn }) {
                   
                   {/* Main Image */}
                   <img
-                    src="/GraduationPicture.png"
+                    src="/HeroProfileImage2.png"
                     alt="Carl Wyne S. Gallardo"
-                    className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 object-cover rounded-3xl border-white/10 group-hover:border-blue-400/30 group-hover:scale-105 transition-all duration-700"
+                    className="relative w-70 h-70 sm:w-70 sm:h-70 md:w-80 md:h-80 lg:w-90 lg:h-90 xl:w-120 xl:h-120 object-cover rounded-3xl border-white/10 group-hover:border-blue-400/30 group-hover:scale-105 transition-all duration-700"
                     style={{
                       animation: 'float 6s ease-in-out infinite',
                     }}
