@@ -175,6 +175,13 @@ const skills = [
     color: '#00979D',
   },
   {
+    name: 'WordPress',
+    svg: 'https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg',
+    level: 'Advanced',
+    category: ['WebDev'],
+    color: '#21759B',
+  },
+  {
     name: 'Canva',
     icon: SiCanva,
     level: 'Advanced',
