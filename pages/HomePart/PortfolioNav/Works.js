@@ -138,7 +138,7 @@ const projectList = [
         image: "/WorksAssets/Itdept2025_imgs/1.jpg",
         imagesFolder: "Itdept2025_imgs"
     },
-        {
+    {
         id: 11,
         title: "SRCB HED Grading Portal",
         year: "2026",
@@ -147,6 +147,16 @@ const projectList = [
         livePreview:"https://hedgradeportal.srcbsystems.net/",
         image: "/WorksAssets/SRCB-HED-P_imgs/Mainpiccc.png",
         imagesFolder: "SRCB-HED-P_imgs"
+    },
+    {
+        id: 12,
+        title: "DICT X TOD Activity Monitoring App",
+        year: "2026",
+        description: "Developed during my internship at the Department of Information and Communications Technology (DICT). I built an activity monitoring web app for the TOD (Technical Operations Division), integrating an AI-powered province and district picker to streamline location-based data entry. The application is now live and actively used in the field.",
+        category: "Web App",
+        livePreview:"https://dict-tod-activity-summary-app.vercel.app/",
+        image: "/WorksAssets/DICTtodapp_imgs/dicttod1.png",
+        imagesFolder: "DICTtodapp_imgs"
     },
 ];
 
