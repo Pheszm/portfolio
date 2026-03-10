@@ -224,7 +224,7 @@ function Skills() {
   return (
     <div className="w-full flex flex-col items-center">
       {/* Animated Tab Filters */}
-      <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 w-full max-w-full">
+      <div className="flex flex-wrap justify-center gap-1.5 mb-8 w-full max-w-full">
         {categories.map((cat) => {
           const isActive = selectedCategory === cat.value;
           const count = getSkillCount(cat.value);
@@ -234,30 +234,15 @@ function Skills() {
             <motion.button
               key={cat.value}
               onClick={() => setSelectedCategory(cat.value)}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className={`relative px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-medium text-sm md:text-base
-                         transition-all duration-300 backdrop-blur-sm
-                         ${isActive 
-                           ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' 
-                           : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-gray-100 border border-white/10 hover:border-blue-400/20'
-                         }`}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${isActive ? 'bg-gradient-to-r from-blue-500 to-cyan-500 border-transparent text-white shadow-md shadow-blue-500/30' : 'bg-white/5 border-white/10 text-gray-400 hover:text-gray-200 hover:border-white/20 hover:bg-white/8'}`}
             >
-              <span className="flex items-center gap-2">
-                <IconComponent className="text-lg" />
-                <span>{cat.label}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
-                  {count}
-                </span>
+              <IconComponent className="text-[11px] shrink-0" />
+              <span>{cat.label}</span>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded-full leading-none ${isActive ? 'bg-white/25 text-white' : 'bg-white/10 text-gray-500'}`}>
+                {count}
               </span>
-              
-              {isActive && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl -z-10"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
             </motion.button>
           );
         })}

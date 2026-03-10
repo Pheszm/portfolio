@@ -158,6 +158,16 @@ const projectList = [
         image: "/WorksAssets/DICTtodapp_imgs/dicttod1.png",
         imagesFolder: "DICTtodapp_imgs"
     },
+        {
+        id: 13,
+        title: "SRCB HED Online Assessment",
+        year: "2026",
+        description: "Our Capstone Project — a full-featured Online Assessment System developed for SRCB's Higher Education Department. The system includes AI-powered essay scoring, eye tracking, facial recognition for identity verification, browser lockdown to prevent cheating, and item randomization to ensure exam integrity. Built to provide a secure, modern, and reliable online examination experience for both students and faculty.",
+        category: "Web App",
+        livePreview:"https://sas.srcbsystems.com/",
+        image: "/WorksAssets/SrcbHoa_imgs/srcbhoapage1.png",
+        imagesFolder: "SrcbHoa_imgs"
+    },
 ];
 
 const itemsPerPage = 6;
@@ -176,9 +186,10 @@ function Works() {
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedWork, setSelectedWork] = useState(null);
 
-    const filteredProjects = selectedCategory
+    const filteredProjects = (selectedCategory
         ? projectList.filter(project => project.category === selectedCategory)
-        : projectList;
+        : [...projectList]
+    ).sort((a, b) => parseInt(b.year) - parseInt(a.year));
 
     const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
     const paginatedProjects = filteredProjects.slice(
@@ -200,7 +211,7 @@ function Works() {
         <div className='w-full flex flex-col items-center px-2 md:px-4'>
             {/* Category Filter Tabs */}
             <p className="text-sm text-gray-400 mb-6">(This is just a selection of my work—I'm still compiling more.)</p>
-            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 w-full">
+            <div className="flex flex-wrap justify-center gap-1.5 mb-8 w-full">
                 {categories.map((cat) => {
                     const isActive = selectedCategory === cat.value;
                     const count = getProjectCount(cat.value);
@@ -210,25 +221,15 @@ function Works() {
                         <motion.button
                             key={cat.value}
                             onClick={() => handleCategoryChange(cat.value)}
-                            whileHover={{ scale: 1.05, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`relative px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 backdrop-blur-sm ${isActive ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-gray-100 border border-white/10 hover:border-blue-400/20'}`}
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 border ${isActive ? 'bg-gradient-to-r from-blue-500 to-cyan-500 border-transparent text-white shadow-md shadow-blue-500/30' : 'bg-white/5 border-white/10 text-gray-400 hover:text-gray-200 hover:border-white/20 hover:bg-white/8'}`}
                         >
-                            <span className="flex items-center gap-2">
-                                <IconComponent className="text-lg" />
-                                <span>{cat.label}</span>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
-                                    {count}
-                                </span>
+                            <IconComponent className="text-[11px] shrink-0" />
+                            <span>{cat.label}</span>
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full leading-none ${isActive ? 'bg-white/25 text-white' : 'bg-white/10 text-gray-500'}`}>
+                                {count}
                             </span>
-
-                            {isActive && (
-                                <motion.div
-                                    layoutId="activeWorkTab"
-                                    className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl -z-10"
-                                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                />
-                            )}
                         </motion.button>
                     );
                 })}
