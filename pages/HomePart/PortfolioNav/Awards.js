@@ -191,13 +191,13 @@ function Awards() {
                                        transition-all duration-300 backdrop-blur-sm
                                        ${isActive 
                                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' 
-                                         : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
+                                         : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-gray-100 border border-white/10 hover:border-blue-400/20'
                                        }`}
                         >
                             <span className="flex items-center gap-2">
                                 <IconComponent className="text-lg" />
                                 <span>{cat.label}</span>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-gray-700'}`}>
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
                                     {count}
                                 </span>
                             </span>
@@ -241,7 +241,7 @@ function Awards() {
                                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${config.badgeColor} border`}>
                                         {awards.length} {awards.length === 1 ? 'Award' : 'Awards'}
                                     </span>
-                                    <div className="flex-1 h-px bg-gradient-to-r from-gray-700 to-transparent ml-4" />
+                                    <div className="flex-1 h-px bg-gradient-to-r from-white/20 to-transparent ml-4" />
                                 </div>
 
                                 {/* Awards Grid */}
@@ -250,11 +250,7 @@ function Awards() {
                                         <div
                                             key={award.id}
                                             onClick={() => setSelectedAward(award)}
-                                            className={`group relative bg-gray-800
-                                                       rounded-2xl overflow-hidden cursor-pointer
-                                                       border-2 ${config.borderColor}
-                                                       hover:shadow-2xl hover:shadow-blue-500/20 
-                                                       transition-all duration-300 hover:-translate-y-2 opacity-100`}
+                                            className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-2 opacity-100"
                                             style={{ visibility: 'visible', display: 'block' }}
                                         >
                                             {/* Image Container */}
@@ -270,8 +266,7 @@ function Awards() {
                                                 />
                                                 
                                                 {/* Gradient Overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent 
-                                                               opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                                                 
                                                 {/* View Button Overlay */}
                                                 <div className="absolute inset-0 flex items-center justify-center 

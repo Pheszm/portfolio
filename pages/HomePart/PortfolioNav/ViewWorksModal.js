@@ -1,4 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -150,7 +151,8 @@ function ViewWorksModal({ work, onClose }) {
     attachments.push({ label: 'Live Preview', url: work.livePreview, type: 'live' });
   }
 
-  return (
+  if (typeof document === 'undefined') return null;
+  return ReactDOM.createPortal(
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -172,7 +174,7 @@ function ViewWorksModal({ work, onClose }) {
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.9, opacity: 0, y: 50 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-        className={`relative z-10 bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl overflow-hidden w-full shadow-2xl ${
+        className={`relative z-10 bg-[#1b1b30] border border-white/15 text-white rounded-2xl overflow-hidden w-full shadow-2xl shadow-black/60 ${
           isFullscreen ? 'max-w-7xl' : 'max-w-5xl'
         }`}
       >
@@ -180,7 +182,7 @@ function ViewWorksModal({ work, onClose }) {
         <motion.button
           whileHover={{ scale: 1.1, rotate: 90 }}
           whileTap={{ scale: 0.9 }}
-          className="absolute top-4 right-4 p-2 bg-gray-800/80 backdrop-blur-sm rounded-full hover:bg-red-500/80 transition-all duration-300 z-20 border border-gray-700"
+          className="absolute top-4 right-4 p-2 bg-white/10 backdrop-blur-sm rounded-full hover:bg-red-500/70 transition-all duration-300 z-20 border border-white/20"
           onClick={onClose}
         >
           <FaTimes className="text-white text-xl" />
@@ -189,7 +191,7 @@ function ViewWorksModal({ work, onClose }) {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="absolute top-4 right-16 p-2 bg-gray-800/80 backdrop-blur-sm rounded-full hover:bg-blue-500/80 transition-all duration-300 z-20 border border-gray-700"
+          className="absolute top-4 right-16 p-2 bg-white/10 backdrop-blur-sm rounded-full hover:bg-blue-500/40 transition-all duration-300 z-20 border border-white/20"
           onClick={() => setIsFullscreen((v) => !v)}
         >
           {isFullscreen ? <FaCompress className="text-white text-lg" /> : <FaExpand className="text-white text-lg" />}
@@ -233,7 +235,7 @@ function ViewWorksModal({ work, onClose }) {
 
           {/* Attachments */}
           {attachments.length > 0 && (
-            <div className="mb-6 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+            <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
               <div className="flex items-center gap-2 mb-3">
                 <FaPaperclip className="text-blue-400" />
                 <h3 className="text-white font-semibold">Attachments / Links</h3>
@@ -344,7 +346,7 @@ function ViewWorksModal({ work, onClose }) {
                     whileTap={{ scale: 0.95 }}
                     onClick={() => goToImage(idx)}
                     className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                      idx === currentImageIndex ? 'border-blue-500 shadow-lg shadow-blue-500/50' : 'border-gray-600 hover:border-gray-400'
+                      idx === currentImageIndex ? 'border-blue-500 shadow-lg shadow-blue-500/50' : 'border-white/20 hover:border-white/40'
                     }`}
                   >
                     <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
@@ -372,12 +374,12 @@ function ViewWorksModal({ work, onClose }) {
           </div>
 
           {/* Keyboard Hints */}
-          <div className="mt-6 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+          <div className="mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
             <p className="text-gray-400 text-xs text-center">
-              Use <kbd className="px-2 py-1 bg-gray-700 rounded text-white">←</kbd>
-              <kbd className="px-2 py-1 bg-gray-700 rounded text-white mx-1">→</kbd>
-              to navigate, <kbd className="px-2 py-1 bg-gray-700 rounded text-white">ESC</kbd> to close,
-              <kbd className="px-2 py-1 bg-gray-700 rounded text-white ml-1">F</kbd> for fullscreen
+              Use <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white">←</kbd>
+              <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white mx-1">→</kbd>
+              to navigate, <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white">ESC</kbd> to close,
+              <kbd className="px-2 py-1 bg-white/10 border border-white/20 rounded text-white ml-1">F</kbd> for fullscreen
             </p>
           </div>
         </div>
@@ -389,7 +391,8 @@ function ViewWorksModal({ work, onClose }) {
           .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.7); }
         `}</style>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 }
 

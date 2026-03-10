@@ -240,13 +240,13 @@ function Skills() {
                          transition-all duration-300 backdrop-blur-sm
                          ${isActive 
                            ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' 
-                           : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
+                           : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-gray-100 border border-white/10 hover:border-blue-400/20'
                          }`}
             >
               <span className="flex items-center gap-2">
                 <IconComponent className="text-lg" />
                 <span>{cat.label}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-gray-700'}`}>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
                   {count}
                 </span>
               </span>
@@ -283,10 +283,7 @@ function Skills() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05, duration: 0.3 }}
                 whileHover={{ y: -8, scale: 1.03 }}
-                className={`relative group bg-gradient-to-br from-gray-900 to-gray-800 
-                           rounded-2xl p-3 sm:p-4 md:p-5 border ${levelConfig.borderColor}
-                           hover:shadow-2xl hover:shadow-blue-500/20 
-                           transition-all duration-300 cursor-pointer overflow-hidden`}
+                className="relative group bg-white/5 backdrop-blur-sm rounded-2xl p-3 sm:p-4 md:p-5 border border-white/10 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer overflow-hidden"
               >
                 {/* Animated Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 
@@ -330,7 +327,7 @@ function Skills() {
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
+                  <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${levelConfig.percentage}%` }}

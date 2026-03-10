@@ -202,12 +202,12 @@ function Works() {
                             onClick={() => handleCategoryChange(cat.value)}
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
-                            className={`relative px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 backdrop-blur-sm ${isActive ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'}`}
+                            className={`relative px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 backdrop-blur-sm ${isActive ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-gray-100 border border-white/10 hover:border-blue-400/20'}`}
                         >
                             <span className="flex items-center gap-2">
                                 <IconComponent className="text-lg" />
                                 <span>{cat.label}</span>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-gray-700'}`}>
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? 'bg-white/20' : 'bg-white/10'}`}>
                                     {count}
                                 </span>
                             </span>
@@ -246,7 +246,7 @@ function Works() {
                                 transition={{ delay: index * 0.1, duration: 0.3 }}
                                 whileHover={{ y: -8, scale: 1.02 }}
                                 onClick={() => setSelectedWork(project)}
-                                className={`group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden cursor-pointer border ${config.borderColor} hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300`}
+                                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
                             >
                                 {/* Image Section */}
                                 <div className="relative h-48 overflow-hidden">
@@ -259,7 +259,7 @@ function Works() {
                                     />
                                     
                                     {/* Gradient Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
                                     
                                     {/* View Project Button */}
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -323,7 +323,7 @@ function Works() {
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                         disabled={currentPage === 1}
-                        className={`p-2 rounded-lg transition-all duration-300 ${currentPage === 1 ? 'bg-gray-800/50 text-gray-600 cursor-not-allowed' : 'bg-gray-800 text-white hover:bg-blue-500'}`}
+                        className={`p-2 rounded-lg transition-all duration-300 ${currentPage === 1 ? 'bg-white/5 text-gray-600 border border-white/5 cursor-not-allowed' : 'bg-white/5 text-white border border-white/10 hover:bg-blue-500/30 hover:border-blue-400/50'}`}
                     >
                         <FaChevronLeft />
                     </motion.button>
@@ -334,7 +334,7 @@ function Works() {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             onClick={() => setCurrentPage(i + 1)}
-                            className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === i + 1 ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}
+                            className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${currentPage === i + 1 ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/50' : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'}`}
                         >
                             {i + 1}
                         </motion.button>
@@ -345,7 +345,7 @@ function Works() {
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                         disabled={currentPage === totalPages}
-                        className={`p-2 rounded-lg transition-all duration-300 ${currentPage === totalPages ? 'bg-gray-800/50 text-gray-600 cursor-not-allowed' : 'bg-gray-800 text-white hover:bg-blue-500'}`}
+                        className={`p-2 rounded-lg transition-all duration-300 ${currentPage === totalPages ? 'bg-white/5 text-gray-600 border border-white/5 cursor-not-allowed' : 'bg-white/5 text-white border border-white/10 hover:bg-blue-500/30 hover:border-blue-400/50'}`}
                     >
                         <FaChevronRight />
                     </motion.button>

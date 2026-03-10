@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import React, { useState, lazy, Suspense, memo } from 'react';
 import { FaBriefcase, FaTrophy, FaCode } from 'react-icons/fa';
 
@@ -9,13 +9,14 @@ const Awards = lazy(() => import('./PortfolioNav/Awards'));
 
 // Loading component
 const LoadingSpinner = () => (
-  <div className="flex items-center justify-center py-20">
+  <div className="flex flex-col items-center justify-center py-24 gap-4">
     <div className="relative">
-      <div className="w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="w-8 h-8 bg-blue-500/20 rounded-full animate-pulse"></div>
+      <div className="w-14 h-14 rounded-full border-4 border-white/10 border-t-cyan-400 animate-spin" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-5 h-5 bg-blue-400/30 rounded-full animate-pulse" />
       </div>
     </div>
+    <p className="text-sm text-gray-400 tracking-wide animate-pulse">Loading...</p>
   </div>
 );
 
@@ -33,43 +34,58 @@ function Portfolio({ fadeIn, stagger }) {
   return (
     <section
       id="portfolio"
-      className="py-16 px-4 sm:px-6 md:px-10"
+      className="py-16 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto"
     >
-      <motion.h2
-        variants={fadeIn}
-        className="text-3xl sm:text-4xl font-bold mb-6 text-center text-white pt-7"
-      >
-        Portfolio
-      </motion.h2>
+      {/* Section Header */}
+      <motion.div variants={fadeIn} className="text-center mb-10 pt-7">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3">
+          <span className="text-white">My </span>
+          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            Portfolio
+          </span>
+        </h2>
+        <div className="w-20 h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 mx-auto rounded-full" />
+      </motion.div>
 
       <motion.div
         variants={fadeIn}
-        className="p-4 sm:p-6 rounded-lg shadow-lg bg-[#03031A]"
+        className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-xl overflow-hidden"
       >
         {/* Tab Navigation */}
-        <nav className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-4">
-          {tabList.map((tab, index) => (
-            <motion.button
-              key={tab.name}
-              onClick={() => setActiveTab(tab.name)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className={`whitespace-nowrap py-2 px-4 border-b-2 text-sm sm:text-base font-medium transition-all duration-300 ${
-                activeTab === tab.name
-                  ? 'border-blue-500 text-blue-400'
-                  : 'border-transparent text-gray-300 hover:text-gray-400 hover:border-gray-300'
-              }`}
-            >
-              {tab.name}
-            </motion.button>
-          ))}
+        <nav className="flex flex-wrap justify-center gap-1 sm:gap-2 p-3 border-b border-white/10 bg-white/5">
+          {tabList.map((tab, index) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.name;
+            return (
+              <motion.button
+                key={tab.name}
+                onClick={() => setActiveTab(tab.name)}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                className={`relative flex items-center gap-2 whitespace-nowrap py-2 px-4 sm:px-5 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
+                  isActive
+                    ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-400/30 shadow-lg shadow-blue-500/10'
+                    : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
+                }`}
+              >
+                <Icon className={`text-base ${isActive ? 'text-cyan-400' : 'text-gray-500'}`} />
+                {tab.name}
+                {isActive && (
+                  <motion.span
+                    layoutId="activeTabIndicator"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                  />
+                )}
+              </motion.button>
+            );
+          })}
         </nav>
 
-        {/* Tab Content with Lazy Loading */}
-        <div className="text-gray-300 mt-6 min-h-[400px]">
+        {/* Tab Content */}
+        <div className="p-4 sm:p-6 text-gray-300 min-h-[420px]">
           <div key={activeTab}>
             <Suspense fallback={<LoadingSpinner />}>
               {ActiveComponent && <ActiveComponent />}
