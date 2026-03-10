@@ -1,12 +1,67 @@
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { memo, useState } from 'react';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 
-export default function Contact({ fadeIn, stagger }) {
+function Contact({ fadeIn, stagger }) {
+  const [formData, setFormData] = useState({
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+  const [statusMessage, setStatusMessage] = useState('');
+
   const contactInfo = [
     { icon: FaEnvelope, label: 'Email', value: 'carlwynegallardo@gmail.com', href: 'mailto:carlwynegallardo@gmail.com' },
     { icon: FaPhone, label: 'Phone', value: '+63 967 218 2163', href: 'tel:+639672182163' },
     { icon: FaMapMarkerAlt, label: 'Location', value: 'Brgy. 5, Balingasag Mis. Or. Philippines', href: '#' },
   ];
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    setStatusMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setStatusMessage('Message sent successfully! I\'ll get back to you soon.');
+        setFormData({ email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        setStatusMessage(data.message || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setStatusMessage('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+      // Clear status message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+        setStatusMessage('');
+      }, 5000);
+    }
+  };
 
   return (
     <motion.section
@@ -69,9 +124,29 @@ export default function Contact({ fadeIn, stagger }) {
         {/* Right Side - Contact Form */}
         <motion.div variants={fadeIn}>
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 md:p-8">
-            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Send Me a Message <span className="text-gray-400 text-sm">(Currently in Development )</span></h3>
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Send Me a Message</h3>
             
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            {/* Status Message */}
+            {submitStatus && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-4 p-4 rounded-xl flex items-center gap-3 ${
+                  submitStatus === 'success' 
+                    ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
+                    : 'bg-red-500/20 border border-red-500/50 text-red-300'
+                }`}
+              >
+                {submitStatus === 'success' ? (
+                  <FaCheckCircle className="text-xl flex-shrink-0" />
+                ) : (
+                  <FaExclamationCircle className="text-xl flex-shrink-0" />
+                )}
+                <p className="text-sm">{statusMessage}</p>
+              </motion.div>
+            )}
+            
+            <form className="space-y-4" onSubmit={handleSubmit}>
 
               {/* Email Input */}
               <div>
@@ -81,9 +156,13 @@ export default function Contact({ fadeIn, stagger }) {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="jdoe@example.com"
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -95,9 +174,13 @@ export default function Contact({ fadeIn, stagger }) {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="Project Inquiry"
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -108,20 +191,27 @@ export default function Contact({ fadeIn, stagger }) {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows="4"
                   placeholder="Tell me about your project..."
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300 resize-none"
                   required
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full px-6 py-3.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-3.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2 ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
-                <span>Send Message</span>
-                <FaPaperPlane className="text-sm" />
+                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                {!isSubmitting && <FaPaperPlane className="text-sm" />}
               </button>
             </form>
           </div>
@@ -130,3 +220,5 @@ export default function Contact({ fadeIn, stagger }) {
     </motion.section>
   );
 }
+
+export default memo(Contact);

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense, memo } from 'react';
 import { FaBriefcase, FaTrophy, FaCode } from 'react-icons/fa';
 
 // Lazy load components for better performance
@@ -19,7 +19,7 @@ const LoadingSpinner = () => (
   </div>
 );
 
-export default function Portfolio({ fadeIn, stagger }) {
+function Portfolio({ fadeIn, stagger }) {
   const [activeTab, setActiveTab] = useState('Works/Projects');
 
   const tabList = [
@@ -33,7 +33,7 @@ export default function Portfolio({ fadeIn, stagger }) {
   return (
     <section
       id="portfolio"
-      className="py-16 px-4 sm:px-6 md:px-10 bg-[#010113ff]"
+      className="py-16 px-4 sm:px-6 md:px-10"
     >
       <motion.h2
         variants={fadeIn}
@@ -80,3 +80,5 @@ export default function Portfolio({ fadeIn, stagger }) {
     </section>
   );
 }
+
+export default memo(Portfolio);

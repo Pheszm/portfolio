@@ -1,6 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBullseye, FaCode, FaPalette, FaDesktop, FaGamepad, FaMicrochip } from 'react-icons/fa';
+import { FaBullseye, FaCode, FaPalette, FaDesktop, FaGamepad, FaMicrochip, FaNetworkWired } from 'react-icons/fa';
+import { 
+  SiHtml5, 
+  SiCss3, 
+  SiTailwindcss, 
+  SiPhp, 
+  SiNextdotjs, 
+  SiPrisma, 
+  SiMysql, 
+  SiLaravel, 
+  SiJavascript, 
+  SiCplusplus, 
+  SiLua, 
+  SiPython, 
+  SiArduino,
+  SiCanva,
+  SiFirebase
+} from 'react-icons/si';
+import Image from 'next/image';
 
 const LEVEL_ORDER = {
   Expert: 4,
@@ -39,111 +57,143 @@ const LEVEL_CONFIG = {
 const skills = [
   {
     name: 'HTML',
-    svg: 'https://icons.iconarchive.com/icons/cornmanthe3rd/plex/512/Other-html-5-icon.png',
+    icon: SiHtml5,
     level: 'Expert',
     category: ['WebDev'],
+    color: '#E34F26',
   },
   {
     name: 'CSS',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Official_CSS_Logo.svg',
+    icon: SiCss3,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#1572B6',
   },
   {
     name: 'Tailwind',
-    svg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeKPw4CK4jcH7udsFHZdiB3iIOuI3fUCsxUZosXy4Y1yd25NA-dzCBPrSDIhg1BwObl3w&usqp=CAU',
+    icon: SiTailwindcss,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#06B6D4',
   },
   {
     name: 'Photoshop',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/1051px-Adobe_Photoshop_CC_icon.svg.png',
+    svg: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg',
     level: 'Advanced',
     category: ['GraphicsDesigns'],
+    color: '#31A8FF',
   },
   {
     name: 'PHP',
-    svg: 'https://images.seeklogo.com/logo-png/10/2/php-logo-png_seeklogo-108600.png',
+    icon: SiPhp,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#777BB4',
   },
   {
     name: 'Next JS',
-    svg: 'https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png',
+    icon: SiNextdotjs,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#FFFFFF',
   },
   {
     name: 'Prisma',
-    svg: 'https://icons.veryicon.com/png/o/business/vscode-program-item-icon/prisma.png',
+    icon: SiPrisma,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#5A67D8',
   },
   {
     name: 'MySQL',
-    svg: 'https://images.icon-icons.com/1381/PNG/512/mysqlworkbench_93532.png',
+    icon: SiMysql,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#4479A1',
+  },
+  {
+    name: 'Neon',
+    svg: 'https://neon.tech/favicon/favicon.svg',
+    level: 'Advanced',
+    category: ['WebDev'],
+    color: '#00E599',
+  },
+  {
+    name: 'Firebase',
+    icon: SiFirebase,
+    level: 'Advanced',
+    category: ['WebDev'],
+    color: '#FFCA28',
   },
   {
     name: 'Laravel',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png',
-    level: 'Advanced',
+    icon: SiLaravel,
+    level: 'Expert',
     category: ['WebDev'],
+    color: '#FF2D20',
   },
   {
     name: 'JavaScript',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+    icon: SiJavascript,
     level: 'Advanced',
     category: ['WebDev'],
+    color: '#F7DF1E',
   },
   {
     name: 'C++',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1200px-ISO_C%2B%2B_Logo.svg.png',
+    icon: SiCplusplus,
     level: 'Expert',
     category: ['WindowsApp', 'Games'],
+    color: '#00599C',
   },
   {
     name: 'Lua',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Lua-Logo.svg/1200px-Lua-Logo.svg.png',
+    icon: SiLua,
     level: 'Advanced',
     category: ['Games'],
+    color: '#2C2D72',
   },
   {
     name: 'Python',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1200px-Python.svg.png',
+    icon: SiPython,
     level: 'Expert',
     category: ['WebDev', 'Games'],
+    color: '#3776AB',
   },
   {
     name: 'C#',
-    svg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Logo_C_sharp.svg/1820px-Logo_C_sharp.svg.png',
+    svg: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_C_sharp.svg',
     level: 'Expert',
     category: ['WindowsApp', 'Games'],
+    color: '#239120',
   },
   {
     name: 'Arduino',
-    svg: 'https://cdn.worldvectorlogo.com/logos/arduino-1.svg',
+    icon: SiArduino,
     level: 'Expert',
     category: ['WebDev', 'WindowsApp', 'Hardware'],
+    color: '#00979D',
   },
   {
     name: 'Canva',
-    svg: 'https://public.canva.site/logo/media/dfb96cc174513093cd6ed61489ccb750.svg',
+    icon: SiCanva,
     level: 'Advanced',
     category: ['GraphicsDesigns'],
+    color: '#00C4CC',
   },
   {
     name: 'Computer Hardware',
-    svg: 'https://cdn-icons-png.flaticon.com/512/4618/4618748.png',
+    icon: FaMicrochip,
     level: 'Advanced',
     category: ['Hardware'],
+    color: '#9CA3AF',
   },
   {
     name: 'Networking',
-    svg: 'https://cdn-icons-png.flaticon.com/512/1086/1086644.png',
+    icon: FaNetworkWired,
     level: 'Advanced',
     category: ['Hardware'],
+    color: '#10B981',
   },
 ];
 
@@ -156,7 +206,7 @@ const categories = [
   { value: 'Hardware', label: 'Hardware', icon: FaMicrochip },
 ];
 
-export default function Skills() {
+function Skills() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const filteredAndSortedSkills = skills
@@ -249,12 +299,22 @@ export default function Skills() {
                     <div className={`absolute inset-0 bg-gradient-to-br ${levelConfig.color} 
                                    rounded-xl blur-xl opacity-0 group-hover:opacity-50 
                                    transition-opacity duration-300`} />
-                    <img
-                      src={skill.svg}
-                      alt={skill.name}
-                      className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain 
-                               drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
-                    />
+                    {skill.icon ? (
+                      <skill.icon
+                        style={{ color: skill.color }}
+                        className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20
+                                 drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
+                      />
+                    ) : (
+                      <Image
+                        src={skill.svg}
+                        alt={skill.name}
+                        width={80}
+                        height={80}
+                        className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20
+                                 drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
+                      />
+                    )}
                   </div>
 
                   {/* Skill Name */}
@@ -305,3 +365,5 @@ export default function Skills() {
     </div>
   );
 }
+
+export default memo(Skills);

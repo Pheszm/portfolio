@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import {
   FaTimes,
   FaChevronLeft,
@@ -14,6 +15,9 @@ import {
   FaExternalLinkAlt,
   FaExpand,
   FaCompress,
+  FaPlay,
+  FaGithub,
+  FaBook,
 } from 'react-icons/fa';
 
 // Category icon/color mapping (aligned with Works.js)
@@ -45,7 +49,7 @@ const categoryConfig = {
   },
 };
 
-export default function ViewWorksModal({ work, onClose }) {
+function ViewWorksModal({ work, onClose }) {
   if (!work) return null;
 
   const config = categoryConfig[work.category] || categoryConfig['Web App'];
@@ -136,9 +140,15 @@ export default function ViewWorksModal({ work, onClose }) {
 
   const attachments = Array.isArray(work.attachments)
     ? work.attachments
-    : work.link
-    ? [{ label: 'Open Link', url: work.link }]
     : [];
+  
+  // Add link and livePreview as separate buttons
+  if (work.link) {
+    attachments.push({ label: 'Documentation', url: work.link, type: 'link' });
+  }
+  if (work.livePreview) {
+    attachments.push({ label: 'Live Preview', url: work.livePreview, type: 'live' });
+  }
 
   return (
     <motion.div
@@ -229,18 +239,30 @@ export default function ViewWorksModal({ work, onClose }) {
                 <h3 className="text-white font-semibold">Attachments / Links</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {attachments.map((att, idx) => (
-                  <a
-                    key={idx}
-                    href={att.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-600/20 text-blue-300 border border-blue-600/40 hover:bg-blue-600/30 transition-colors"
-                  >
-                    <FaExternalLinkAlt />
-                    <span className="text-sm font-medium">{att.label || 'Open'}</span>
-                  </a>
-                ))}
+                {attachments.map((att, idx) => {
+                  const isLive = att.type === 'live';
+                  const ButtonIcon = isLive ? FaPlay : FaBook;
+                  
+                  return (
+                    <motion.a
+                      key={idx}
+                      href={att.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 ${
+                        isLive
+                          ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white border border-green-500/50 hover:from-green-500 hover:to-emerald-500 shadow-lg shadow-green-500/30'
+                          : 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white border border-blue-500/50 hover:from-blue-500 hover:to-cyan-500 shadow-lg shadow-blue-500/30'
+                      }`}
+                    >
+                      <ButtonIcon className="text-lg" />
+                      <span className="text-sm">{att.label || 'Open'}</span>
+                      <FaExternalLinkAlt className="text-xs opacity-70" />
+                    </motion.a>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -258,7 +280,7 @@ export default function ViewWorksModal({ work, onClose }) {
 
               {!loading && !error && images.length > 0 && (
                 <AnimatePresence initial={false} custom={imageDirection} mode="wait">
-                  <motion.img
+                  <motion.div
                     key={currentImageIndex}
                     custom={imageDirection}
                     variants={slideVariants}
@@ -266,10 +288,18 @@ export default function ViewWorksModal({ work, onClose }) {
                     animate="center"
                     exit="exit"
                     transition={{ x: { type: 'spring', stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
-                    src={images[currentImageIndex]}
-                    alt={`${work.title} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain"
-                  />
+                    className="relative w-full h-full"
+                  >
+                    <Image
+                      src={images[currentImageIndex]}
+                      alt={`${work.title} - Image ${currentImageIndex + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 80vw"
+                      className="object-contain"
+                      priority={currentImageIndex === 0}
+                      loading={currentImageIndex === 0 ? "eager" : "lazy"}
+                    />
+                  </motion.div>
                 </AnimatePresence>
               )}
 
@@ -362,4 +392,6 @@ export default function ViewWorksModal({ work, onClose }) {
     </motion.div>
   );
 }
+
+export default memo(ViewWorksModal);
 

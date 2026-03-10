@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { FaTrophy, FaCertificate, FaCalendarAlt, FaEye, FaImages } from 'react-icons/fa';
 import ViewAwardsModal from "./ViewAwardsModal";
 
@@ -145,7 +146,7 @@ function groupByCategory(awards) {
     }, {});
 }
 
-export default function Awards() {
+function Awards() {
     const [selectedAward, setSelectedAward] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -258,11 +259,14 @@ export default function Awards() {
                                         >
                                             {/* Image Container */}
                                             <div className="relative w-full h-48 overflow-hidden">
-                                                <img
+                                                <Image
                                                     src={award.image[0]}
                                                     alt={award.title}
-                                                    className="w-full h-full object-cover transition-transform duration-500 
+                                                    fill
+                                                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                                                    className="object-cover transition-transform duration-500 
                                                              group-hover:scale-110"
+                                                    loading="lazy"
                                                 />
                                                 
                                                 {/* Gradient Overlay */}
@@ -352,3 +356,5 @@ export default function Awards() {
         </div>
     );
 }
+
+export default memo(Awards);

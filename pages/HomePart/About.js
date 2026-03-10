@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { memo } from 'react';
 import { FaDesktop, FaBasketballBall, FaCode, FaGamepad, FaPaintBrush, FaMicrochip, FaLaptopCode, FaMicrophone, FaMusic, FaVideo, FaGraduationCap, FaAward } from 'react-icons/fa'; 
 
-export default function About({ fadeIn, stagger }) {
+function About({ fadeIn, stagger }) {
   const stats = [
     { label: 'Awards', value: '10+', icon: FaAward },
     { label: 'Projects Completed', value: '10+', icon: FaCode },
@@ -43,11 +45,16 @@ export default function About({ fadeIn, stagger }) {
               
               {/* Image */}
               <div className="relative">
-                <img 
-                  src="/CarlProfessionPic.png" 
-                  alt="Carl Wyne S. Gallardo" 
-                  className="z-1 relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 object-cover rounded-full group-hover:border-blue-400/30 transition-all duration-500"
-                />
+                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden">
+                  <Image
+                    src="/CarlProfessionPic.png" 
+                    alt="Carl Wyne S. Gallardo" 
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, (max-width: 1024px) 256px, 288px"
+                    className="object-cover group-hover:border-blue-400/30 transition-all duration-500"
+                  />
+                </div>
                 {/* Decorative elements */}
                 <div className="absolute -top-3 -right-3 w-16 h-16 bg-blue-400/20 rounded-full blur-xl animate-pulse" />
                 <div className="absolute -bottom-3 -left-3 w-20 h-20 bg-cyan-400/20 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }} />
@@ -145,3 +152,5 @@ export default function About({ fadeIn, stagger }) {
     </>
   );
 }
+
+export default memo(About);

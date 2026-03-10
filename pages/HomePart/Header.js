@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { FaHome, FaUser, FaProjectDiagram, FaEnvelope } from 'react-icons/fa';
 
@@ -9,7 +9,7 @@ const navItems = [
   { label: 'Contact', icon: FaEnvelope, href: 'contact' },
 ];
 
-export default function Header({ activeSection, handleNavClick }) {
+function Header({ activeSection, handleNavClick }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -108,3 +108,5 @@ export default function Header({ activeSection, handleNavClick }) {
     </>
   );
 }
+
+export default memo(Header);

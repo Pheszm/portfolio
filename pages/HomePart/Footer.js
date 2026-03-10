@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaArrowUp } from 'react-icons/fa';
 
-export default function Footer() {
+function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -66,3 +67,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default memo(Footer);

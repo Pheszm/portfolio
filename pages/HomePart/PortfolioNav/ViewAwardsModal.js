@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { 
     FaTimes, 
     FaChevronLeft, 
@@ -11,7 +12,7 @@ import {
     FaCompress
 } from 'react-icons/fa';
 
-export default function ViewAwardsModal({ award, onClose }) {
+function ViewAwardsModal({ award, onClose }) {
     if (!award) return null;
     
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -176,7 +177,7 @@ export default function ViewAwardsModal({ award, onClose }) {
                     <div className="relative">
                         <div className={`relative bg-black/30 rounded-xl overflow-hidden ${isFullscreen ? 'h-[70vh]' : 'h-[60vh]'}`}>
                             <AnimatePresence initial={false} custom={imageDirection} mode="wait">
-                                <motion.img
+                                <motion.div
                                     key={currentImageIndex}
                                     custom={imageDirection}
                                     variants={slideVariants}
@@ -187,10 +188,18 @@ export default function ViewAwardsModal({ award, onClose }) {
                                         x: { type: "spring", stiffness: 300, damping: 30 },
                                         opacity: { duration: 0.2 },
                                     }}
-                                    src={award.image[currentImageIndex]}
-                                    alt={`${award.title} - Image ${currentImageIndex + 1}`}
-                                    className="w-full h-full object-contain"
-                                />
+                                    className="relative w-full h-full"
+                                >
+                                    <Image
+                                        src={award.image[currentImageIndex]}
+                                        alt={`${award.title} - Image ${currentImageIndex + 1}`}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 80vw"
+                                        className="object-contain"
+                                        priority={currentImageIndex === 0}
+                                        loading={currentImageIndex === 0 ? "eager" : "lazy"}
+                                    />
+                                </motion.div>
                             </AnimatePresence>
 
                             {/* Navigation Arrows */}
@@ -233,10 +242,13 @@ export default function ViewAwardsModal({ award, onClose }) {
                                         onClick={() => goToImage(idx)}
                                         className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${idx === currentImageIndex ? 'border-blue-500 shadow-lg shadow-blue-500/50' : 'border-gray-600 hover:border-gray-400'}`}
                                     >
-                                        <img
+                                        <Image
                                             src={img}
                                             alt={`Thumbnail ${idx + 1}`}
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            sizes="80px"
+                                            className="object-cover"
+                                            loading="lazy"
                                         />
                                         {idx === currentImageIndex && (
                                             <motion.div
@@ -295,3 +307,5 @@ export default function ViewAwardsModal({ award, onClose }) {
         </motion.div>
     );
 }
+
+export default memo(ViewAwardsModal);

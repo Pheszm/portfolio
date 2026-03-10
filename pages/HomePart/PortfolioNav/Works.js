@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { FaGamepad, FaCode, FaDesktop, FaTerminal, FaPalette, FaExternalLinkAlt, FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ViewWorksModal from './ViewWorksModal';
 
@@ -39,6 +40,15 @@ const categoryConfig = {
 const projectList = [
     {
         id: 1,
+        title: "DICT Graphic Designer",
+        year: "2026",
+        description: "Interned with the Department of Information and Communications Technology (DICT) as a graphic designer. I created visual content for government programs, digital literacy campaigns, and technology-focused initiatives. My designs helped communicate tech education, e-government services, and community outreach programs to the public.",
+        category: "Graphics Designs",
+        image: "/WorksAssets/DictGraphicDesign_imgs/Dictpicss1.png",
+        imagesFolder: "DictGraphicDesign_imgs"
+    },
+    {
+        id: 2,
         title: "SBI Graphic Designer",
         year: "2025",
         description: "SBI runs several businesses, including a Lying-In clinic, Lechon, and an Animal Bite Center and Vaccination Clinic. I work with them on commission as a graphic designer. I create clear posters and graphics for marketing and social media posts. I keep the style consistent for each business so people can recognize the brand. Samples of my work are shown below.",
@@ -47,18 +57,19 @@ const projectList = [
         imagesFolder: "SBI_imgs"
     },
     {
-        id: 2,
+        id: 3,
         title: "Roblox Balingasag",
         year: "2025",
         description: "A Roblox game that recreates key places in Balingasag, Misamis Oriental. I built the map and basic interactions using Roblox Studio tools. I am the solo developer and the owner of this game. The documentation link is attached, and the images below show sample scenes from the game.",
         category: "GAME",
         image: "/WorksAssets/RobloxProfile.png",
+        livePreview: "https://www.roblox.com/games/120612489905096/Balingasag",
         link: "https://www.canva.com/design/DAGtMOSJ7vc/nr29ThSaFIGaWOdOXlPByQ/view?utm_content=DAGtMOSJ7vc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb7f11bc843",
         // Folder inside public/WorksAssets to auto-load images in the modal
         imagesFolder: "Roblox_bali_imgs"
     },
     {
-        id: 3,
+        id: 4,
         title: "Spinfinity",
         year: "2023",
         description: ".NET C# tool that makes picking random winners easy and fun. Whether for a contest, raffle, or any event.",
@@ -68,16 +79,17 @@ const projectList = [
         imagesFolder: "Roblox_bali_imgs"
     },
     {
-        id: 4,
+        id: 5,
         title: "Arcadia",
         year: "2021",
         description: "ARCADIA is an educational Scratch game featuring mini-games Space Math, Hangman, and MoreLess that build math and problem-solving through challenges.",
         category: "GAME",
         image: "/WorksAssets/AcadiaProfile.jpg",
-        link: "https://www.canva.com/design/DAGtO4nXGfQ/6reZLP4ZbdhitSl7mbKmzA/view?utm_content=DAGtO4nXGfQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h38e3a09315"
+        livePreview: "https://scratch.mit.edu/projects/557441661/",
+        link: "https://www.canva.com/design/DAGtO4nXGfQ/6reZLP4ZbdhitSl7mbKmzA/view?utm_content=DAGtO4nXGfQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h38e3a09315",
     },
     {
-        id: 5,
+        id: 6,
         title: "ManageIT",
         year: "2024",
         description: "Designed and developed ManageIT, a web-based AVR inventory and reservation system using vanilla PHP and CSS. Delivered a full-stack workflow with custom API–based QR code scanning to simplify check-ins and asset tracking, enabling students to reserve items efficiently and staff to manage inventory with clarity.",
@@ -87,7 +99,7 @@ const projectList = [
         imagesFolder: "ManageIT_imgs"    
     },
     {
-        id: 6,
+        id: 7,
         title: "Library Book Lending List",
         year: "2022",
         description: "A simple Python program that helps our High School Library staff manage book lending and records.",
@@ -97,31 +109,44 @@ const projectList = [
         imagesFolder: "LBLL_imgs"
     },
     {
-        id: 7,
+        id: 8,
         title: "SRCB AVR SYSTEM",
         year: "2024",
         description: "A web-based AVR system built with Next.js and Prisma DB, featuring a modern React UI and a robust ORM-backed data layer for reliable, maintainable data operations. I was the full-stack developer on this project.",
         category: "Web App",
+        livePreview:"https://srcb-avr-system.vercel.app/",
         image: "/WorksAssets/Lablog_imgs/1.png",
         imagesFolder: "Lablog_imgs"
     },
     {
-        id: 8,
+        id: 9,
         title: "Hotel Reservation System",
         year: "2024",
         description: "A hotel reservation platform built with vanilla PHP. I served as the Frontend Developer and Graphics Designer, crafting the UI and visual assets.",
         category: "Web App",
         image: "/WorksAssets/HRS_imgs/HRS1.png",
+        link: "https://www.canva.com/design/DAFp7eiXGVc/1HhkjF9kP5S-T0FCyZsOGQ/view?utm_content=DAFp7eiXGVc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=he34706880e",
+        livePreview: "https://pheszm.github.io/HotelReservationSystem/",
         imagesFolder: "HRS_imgs"
     },
     {
-        id: 9,
+        id: 10,
         title: "IT Departamental Shirt Design",
         year: "2025",
         description: "I was assigned to design our IT Departmental shirt for Intramurals 2025. I handled the full graphics process—from concept and typography to color palette and print‑ready layout—to deliver a bold, cohesive design that represents the department’s identity.",
         category: "Graphics Designs",
         image: "/WorksAssets/Itdept2025_imgs/1.jpg",
         imagesFolder: "Itdept2025_imgs"
+    },
+        {
+        id: 11,
+        title: "SRCB HED Grading Portal",
+        year: "2026",
+        description: "Commissioned by SRCB as a paid project to develop a comprehensive student grade portal. The system enables students to access their grades anytime, anywhere, view academic performance across all subjects, track progress, and stay updated with real-time grade postings. Built with Next.js and Prisma DB for a modern, responsive experience.",
+        category: "Web App",
+        livePreview:"https://hedgradeportal.srcbsystems.net/",
+        image: "/WorksAssets/SRCB-HED-P_imgs/Mainpiccc.png",
+        imagesFolder: "SRCB-HED-P_imgs"
     },
 ];
 
@@ -136,7 +161,7 @@ const categories = [
     { value: 'Graphics Designs', label: 'Graphics', icon: FaPalette },
 ];
 
-export default function Works() {
+function Works() {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedWork, setSelectedWork] = useState(null);
@@ -225,10 +250,12 @@ export default function Works() {
                             >
                                 {/* Image Section */}
                                 <div className="relative h-48 overflow-hidden">
-                                    <img
+                                    <Image
                                         src={project.image}
                                         alt={project.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                     
                                     {/* Gradient Overlay */}
@@ -336,3 +363,5 @@ export default function Works() {
         </div>
     );
 }
+
+export default memo(Works);
