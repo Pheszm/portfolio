@@ -296,10 +296,10 @@ function ViewWorksModal({ work, onClose }) {
                       src={images[currentImageIndex]}
                       alt={`${work.title} - Image ${currentImageIndex + 1}`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 80vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
                       className="object-contain"
-                      priority={currentImageIndex === 0}
-                      loading={currentImageIndex === 0 ? "eager" : "lazy"}
+                      quality={80}
+                      priority
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -349,7 +349,7 @@ function ViewWorksModal({ work, onClose }) {
                       idx === currentImageIndex ? 'border-blue-500 shadow-lg shadow-blue-500/50' : 'border-white/20 hover:border-white/40'
                     }`}
                   >
-                    <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                    <Image src={img} alt={`Thumbnail ${idx + 1}`} fill sizes="80px" className="object-cover" quality={60} />
                     {idx === currentImageIndex && <motion.div layoutId="activeThumbnail" className="absolute inset-0 bg-blue-500/20" />}
                   </motion.button>
                 ))}
@@ -371,6 +371,12 @@ function ViewWorksModal({ work, onClose }) {
                 ))}
               </div>
             )}
+
+            {/* Preload adjacent images for instant navigation */}
+            {images.length > 1 && [-1, 1].map(offset => {
+              const idx = (currentImageIndex + offset + images.length) % images.length;
+              return <img key={`preload-${idx}`} src={images[idx]} alt="" className="hidden" fetchPriority="high" />;
+            })}
           </div>
 
           {/* Keyboard Hints */}

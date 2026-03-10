@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Homepage from "./HomePart/Home";
 import { Comic_Neue } from "next/font/google";
 
@@ -10,8 +11,14 @@ const comicFont = Comic_Neue({
 
 export default function Home() {
   return (
-    <main className={comicFont.variable}>
-      <Homepage />
-    </main>
+    <>
+      <Head>
+        <title>Carl Wyne Gallardo | Portfolio</title>
+        <meta name="description" content="Portfolio of Carl Wyne Gallardo — Web Developer and Graphic Designer." />
+      </Head>
+      <main className={comicFont.variable}>
+        <Homepage />
+      </main>
+    </>
   );
 }

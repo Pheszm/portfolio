@@ -259,14 +259,17 @@ function Works() {
                                     />
                                     
                                     {/* Gradient Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                                    
-                                    {/* View Project Button */}
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div className="bg-blue-500/90 backdrop-blur-sm px-6 py-3 rounded-full flex items-center gap-2 transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                                            <FaExternalLinkAlt className="text-white" />
-                                            <span className="text-white font-semibold">View Project</span>
-                                        </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                    {/* Bottom slide-up label */}
+                                    <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out px-4 py-3 bg-gradient-to-t from-black/80 to-transparent flex items-center gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                                        <span className="text-white text-xs font-semibold tracking-widest uppercase">Open Project</span>
+                                    </div>
+
+                                    {/* Top-right corner icon */}
+                                    <div className="absolute top-3 left-3 p-1.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
+                                        <FaExternalLinkAlt className="text-white text-xs" />
                                     </div>
 
                                     {/* Year Badge */}

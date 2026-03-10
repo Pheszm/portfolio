@@ -196,10 +196,10 @@ function ViewAwardsModal({ award, onClose }) {
                                         src={award.image[currentImageIndex]}
                                         alt={`${award.title} - Image ${currentImageIndex + 1}`}
                                         fill
-                                        sizes="(max-width: 768px) 100vw, 80vw"
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
                                         className="object-contain"
-                                        priority={currentImageIndex === 0}
-                                        loading={currentImageIndex === 0 ? "eager" : "lazy"}
+                                        quality={80}
+                                        priority
                                     />
                                 </motion.div>
                             </AnimatePresence>
@@ -276,6 +276,12 @@ function ViewAwardsModal({ award, onClose }) {
                                 ))}
                             </div>
                         )}
+
+                        {/* Preload adjacent images for instant navigation */}
+                        {award.image.length > 1 && [-1, 1].map(offset => {
+                            const idx = (currentImageIndex + offset + award.image.length) % award.image.length;
+                            return <img key={`preload-${idx}`} src={award.image[idx]} alt="" className="hidden" fetchPriority="high" />;
+                        })}
                     </div>
 
                     {/* Keyboard Hints */}
