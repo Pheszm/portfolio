@@ -78,19 +78,16 @@ function ViewAwardsModal({ award, onClose }) {
 
     const slideVariants = {
         enter: (direction) => ({
-            x: direction > 0 ? 1000 : -1000,
+            x: direction > 0 ? 300 : -300,
             opacity: 0,
-            scale: 0.8,
         }),
         center: {
             x: 0,
             opacity: 1,
-            scale: 1,
         },
         exit: (direction) => ({
-            x: direction < 0 ? 1000 : -1000,
+            x: direction < 0 ? 300 : -300,
             opacity: 0,
-            scale: 0.8,
         }),
     };
 
@@ -178,7 +175,7 @@ function ViewAwardsModal({ award, onClose }) {
                     {/* Image Carousel */}
                     <div className="relative">
                         <div className={`relative bg-black/30 rounded-xl overflow-hidden ${isFullscreen ? 'h-[70vh]' : 'h-[60vh]'}`}>
-                            <AnimatePresence initial={false} custom={imageDirection} mode="wait">
+                            <AnimatePresence initial={false} custom={imageDirection}>
                                 <motion.div
                                     key={currentImageIndex}
                                     custom={imageDirection}
@@ -187,8 +184,8 @@ function ViewAwardsModal({ award, onClose }) {
                                     animate="center"
                                     exit="exit"
                                     transition={{
-                                        x: { type: "spring", stiffness: 300, damping: 30 },
-                                        opacity: { duration: 0.2 },
+                                        x: { type: 'tween', duration: 0.18, ease: 'easeInOut' },
+                                        opacity: { duration: 0.12 },
                                     }}
                                     className="relative w-full h-full"
                                 >
@@ -196,9 +193,9 @@ function ViewAwardsModal({ award, onClose }) {
                                         src={award.image[currentImageIndex]}
                                         alt={`${award.title} - Image ${currentImageIndex + 1}`}
                                         fill
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 800px"
                                         className="object-contain"
-                                        quality={80}
+                                        quality={50}
                                         priority
                                     />
                                 </motion.div>
@@ -250,7 +247,7 @@ function ViewAwardsModal({ award, onClose }) {
                                             fill
                                             sizes="80px"
                                             className="object-cover"
-                                            loading="lazy"
+                                            loading="eager"
                                         />
                                         {idx === currentImageIndex && (
                                             <motion.div

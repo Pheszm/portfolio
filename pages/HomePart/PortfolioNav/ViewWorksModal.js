@@ -134,9 +134,9 @@ function ViewWorksModal({ work, onClose }) {
   };
 
   const slideVariants = {
-    enter: (direction) => ({ x: direction > 0 ? 1000 : -1000, opacity: 0, scale: 0.9 }),
-    center: { x: 0, opacity: 1, scale: 1 },
-    exit: (direction) => ({ x: direction < 0 ? 1000 : -1000, opacity: 0, scale: 0.9 }),
+    enter: (direction) => ({ x: direction > 0 ? 300 : -300, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (direction) => ({ x: direction < 0 ? 300 : -300, opacity: 0 }),
   };
 
   const attachments = Array.isArray(work.attachments)
@@ -281,7 +281,7 @@ function ViewWorksModal({ work, onClose }) {
               )}
 
               {!loading && !error && images.length > 0 && (
-                <AnimatePresence initial={false} custom={imageDirection} mode="wait">
+                <AnimatePresence initial={false} custom={imageDirection}>
                   <motion.div
                     key={currentImageIndex}
                     custom={imageDirection}
@@ -289,16 +289,16 @@ function ViewWorksModal({ work, onClose }) {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ x: { type: 'spring', stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
+                    transition={{ x: { type: 'tween', duration: 0.18, ease: 'easeInOut' }, opacity: { duration: 0.12 } }}
                     className="relative w-full h-full"
                   >
                     <Image
                       src={images[currentImageIndex]}
                       alt={`${work.title} - Image ${currentImageIndex + 1}`}
                       fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1024px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 800px"
                       className="object-contain"
-                      quality={80}
+                      quality={50}
                       priority
                     />
                   </motion.div>
