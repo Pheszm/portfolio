@@ -112,41 +112,77 @@ function About({ fadeIn, stagger }) {
             <div className="w-16 h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 rounded-full mx-auto lg:mx-0" />
           </div>
 
-          {/* Interests Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-            {[
-              { icon: FaCode, label: 'Web Development', color: 'from-blue-400 to-cyan-400' },
-              { icon: FaPaintBrush, label: 'Graphic Design', color: 'from-cyan-400 to-blue-500' },
-              { icon: FaMicrochip, label: 'Computer Hardware', color: 'from-blue-500 to-cyan-500' },
-              { icon: FaDesktop, label: 'Game Development', color: 'from-cyan-500 to-blue-400' },
-              { icon: FaLaptopCode, label: 'Programming', color: 'from-blue-400 to-cyan-500' },
-              { icon: FaBasketballBall, label: 'Basketball', color: 'from-cyan-400 to-blue-400' },
-              { icon: FaGamepad, label: 'Video Games', color: 'from-blue-500 to-cyan-400' },
-              { icon: FaMicrophone, label: 'Singing', color: 'from-cyan-500 to-blue-500' },
-              { icon: FaMusic, label: 'Music Listening', color: 'from-blue-400 to-cyan-400' },
-              { icon: FaVideo, label: 'Content Creation', color: 'from-cyan-400 to-blue-500' },
-            ].map((interest, index) => (
+          {/* Scrolling Marquee */}
+          {(() => {
+            const row1 = [
+              { icon: FaCode,       label: 'Web Development',   color: 'from-blue-400 to-cyan-400',      glow: 'rgba(56,189,248,0.35)' },
+              { icon: FaPaintBrush, label: 'Graphic Design',    color: 'from-pink-400 to-rose-500',      glow: 'rgba(251,113,133,0.35)' },
+              { icon: FaMicrochip,  label: 'Computer Hardware', color: 'from-violet-400 to-purple-500',  glow: 'rgba(167,139,250,0.35)' },
+              { icon: FaDesktop,    label: 'Game Development',  color: 'from-emerald-400 to-teal-500',   glow: 'rgba(52,211,153,0.35)' },
+              { icon: FaLaptopCode, label: 'Programming',       color: 'from-indigo-400 to-blue-500',    glow: 'rgba(99,102,241,0.35)' },
+            ];
+            const row2 = [
+              { icon: FaBasketballBall, label: 'Basketball',       color: 'from-orange-400 to-amber-500',  glow: 'rgba(251,146,60,0.35)' },
+              { icon: FaGamepad,        label: 'Video Games',      color: 'from-green-400 to-emerald-500', glow: 'rgba(74,222,128,0.35)' },
+              { icon: FaMicrophone,     label: 'Singing',          color: 'from-rose-400 to-fuchsia-500',  glow: 'rgba(251,113,133,0.35)' },
+              { icon: FaMusic,          label: 'Music Listening',  color: 'from-sky-400 to-cyan-500',      glow: 'rgba(56,189,248,0.35)' },
+              { icon: FaVideo,          label: 'Content Creation', color: 'from-yellow-400 to-orange-500', glow: 'rgba(250,204,21,0.35)' },
+            ];
+            const Chip = ({ item, i }) => (
               <motion.div
-                key={index}
-                variants={fadeIn}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="group relative bg-white/5 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10 hover:border-blue-400/50 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                key={i}
+                whileHover={{ scale: 1.12, y: -5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+                style={{ willChange: 'transform' }}
+                className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/[0.06] border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors duration-200 cursor-default flex-shrink-0 select-none"
               >
-                {/* Gradient glow on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${interest.color} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300 blur-xl`} />
-                
-                {/* Content */}
-                <div className="relative flex flex-col items-center gap-2 text-center">
-                  <div className={`p-2 md:p-3 bg-gradient-to-br ${interest.color} rounded-lg`}>
-                    <interest.icon className="text-xl md:text-2xl text-white" />
-                  </div>
-                  <span className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">
-                    {interest.label}
-                  </span>
+                <div
+                  className={`p-1.5 bg-gradient-to-br ${item.color} rounded-full`}
+                  style={{ boxShadow: `0 0 10px ${item.glow}` }}
+                >
+                  <item.icon className="text-sm text-white" />
                 </div>
+                <span className="text-xs md:text-sm font-medium text-gray-400 group-hover:text-white transition-colors duration-200 whitespace-nowrap">
+                  {item.label}
+                </span>
               </motion.div>
-            ))}
-          </div>
+            );
+            return (
+              <div className="relative overflow-hidden rounded-2xl py-3 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+                {/* Row 1 — scroll left */}
+                <div className="flex gap-3 mb-3 w-max interests-row-1">
+                  {[...row1, ...row1, ...row1, ...row1].map((item, i) => <Chip key={i} item={item} i={i} />)}
+                </div>
+                {/* Row 2 — scroll right */}
+                <div className="flex gap-3 w-max interests-row-2">
+                  {[...row2, ...row2, ...row2, ...row2].map((item, i) => <Chip key={i} item={item} i={i} />)}
+                </div>
+              </div>
+            );
+          })()}
+
+          <style jsx>{`
+            .interests-row-1 {
+              animation: scrollLeft 28s linear infinite;
+            }
+            .interests-row-1:hover {
+              animation-play-state: paused;
+            }
+            .interests-row-2 {
+              animation: scrollRight 22s linear infinite;
+            }
+            .interests-row-2:hover {
+              animation-play-state: paused;
+            }
+            @keyframes scrollLeft {
+              0%   { transform: translateX(0); }
+              100% { transform: translateX(-25%); }
+            }
+            @keyframes scrollRight {
+              0%   { transform: translateX(-25%); }
+              100% { transform: translateX(0); }
+            }
+          `}</style>
         </motion.div>
       </motion.section>
     </>
