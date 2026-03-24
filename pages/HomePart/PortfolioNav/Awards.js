@@ -184,6 +184,16 @@ const awardList = [
         year: "2026",
         image: ["/AwardsAssets/2026Awards/DigitalLiteracyTrainingDICT2026.jpg"],
     },
+    {
+        id: 19,
+        category: "Certificates",
+        title: "AI for Juan and Everyone: Hour of Code Certificate - DICT Region 10",
+        shortdescription: "Completed the interactive Hour of Code session organized by DICT Region 10 exploring AI and coding basics",
+        description: "I participated in an exciting hands-on Hour of Code event organized by DICT Region 10, held on March 24, 2026. This beginner-friendly session, held online via Zoom from 1:00 PM to 3:30 PM, provided interactive AI and coding activities in a fun, game-like learning experience. The event was designed to introduce students to Artificial Intelligence and coding fundamentals in an accessible and engaging way. It was held in partnership with the Break the Fake Movement, promoting digital awareness and responsible tech use, and all participants received certificates upon completion. As part of DICT Region 10's Digital Bayanihan initiative under the Bagong Pilipinas vision, this event aimed to inspire future-ready learners to explore the world of technology and innovation.",
+        year: "2026",
+        image: ["/AwardsAssets/2026Awards/ai_for_juan_and_everyone/Basic concept of AI.jpg", "/AwardsAssets/2026Awards/ai_for_juan_and_everyone/Basic Concept of comsci.jpg", "/AwardsAssets/2026Awards/ai_for_juan_and_everyone/Minecrafttt.jpg"],
+        reference: "https://www.facebook.com/DICTRegion10/posts/pfbid02mgdzUrDaskov1gmTqKUmWDCj4tXMStxP97QJeKEyncbCvb6NGDgjcknud41CJnaFl?rdid=wWZvhGEJk2RVr6pw#",
+    },
 ];
 
 

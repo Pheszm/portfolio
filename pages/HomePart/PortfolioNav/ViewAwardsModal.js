@@ -10,7 +10,10 @@ import {
     FaCertificate, 
     FaCalendarAlt,
     FaExpand,
-    FaCompress
+    FaCompress,
+    FaPaperclip,
+    FaExternalLinkAlt,
+    FaLink
 } from 'react-icons/fa';
 
 function ViewAwardsModal({ award, onClose }) {
@@ -171,6 +174,30 @@ function ViewAwardsModal({ award, onClose }) {
                             {award.description}
                         </p>
                     </div>
+
+                    {/* Attachments / Reference Links */}
+                    {award.reference && (
+                        <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
+                            <div className="flex items-center gap-2 mb-3">
+                                <FaPaperclip className="text-blue-400" />
+                                <h3 className="text-white font-semibold">Reference</h3>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                <motion.a
+                                    href={award.reference}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-600 to-blue-600 text-white border border-cyan-500/50 hover:from-cyan-500 hover:to-blue-500 shadow-lg shadow-cyan-500/30"
+                                >
+                                    <FaLink className="text-lg" />
+                                    <span className="text-sm">View Source</span>
+                                    <FaExternalLinkAlt className="text-xs opacity-70" />
+                                </motion.a>
+                            </div>
+                        </div>
+                    )}
 
                     {/* Image Carousel */}
                     <div className="relative">
