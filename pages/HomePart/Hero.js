@@ -1,13 +1,195 @@
 import { useState, useEffect, useRef, memo } from 'react';
 import TypingWithCursor from '@/components/TypingAnimation';
-import { motion } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
 import Script from 'next/script';
 import Image from 'next/image';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaArrowDown } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaArrowDown, FaMicrochip, FaNetworkWired } from 'react-icons/fa';
+import { 
+  SiHtml5, 
+  SiCss3, 
+  SiTailwindcss, 
+  SiPhp, 
+  SiNextdotjs, 
+  SiPrisma,
+  SiMysql, 
+  SiLaravel,
+  SiJavascript, 
+  SiCplusplus, 
+  SiLua,
+  SiPython, 
+  SiArduino,
+  SiFirebase,
+  SiCanva
+} from 'react-icons/si';
+
+// Tech stack icons that orbit around the image
+const TECH_ICONS = [
+  { Icon: SiHtml5, color: '#E34F26', label: 'HTML' },
+  { Icon: SiCss3, color: '#1572B6', label: 'CSS' },
+  { Icon: SiTailwindcss, color: '#06B6D4', label: 'Tailwind' },
+  { svg: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg', color: '#31A8FF', label: 'Photoshop' },
+  { Icon: SiPhp, color: '#777BB4', label: 'PHP' },
+  { Icon: SiNextdotjs, color: '#FFFFFF', label: 'Next.js' },
+  { Icon: SiPrisma, color: '#5A67D8', label: 'Prisma' },
+  { Icon: SiMysql, color: '#4479A1', label: 'MySQL' },
+  { svg: 'https://neon.tech/favicon/favicon.svg', color: '#00E599', label: 'Neon' },
+  { Icon: SiFirebase, color: '#FFCA28', label: 'Firebase' },
+  { Icon: SiLaravel, color: '#FF2D20', label: 'Laravel' },
+  { Icon: SiJavascript, color: '#F7DF1E', label: 'JavaScript' },
+  { Icon: SiCplusplus, color: '#00599C', label: 'C++' },
+  { Icon: SiLua, color: '#2C2D72', label: 'Lua' },
+  { Icon: SiPython, color: '#3776AB', label: 'Python' },
+  { svg: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_C_sharp.svg', color: '#239120', label: 'C#' },
+  { Icon: SiArduino, color: '#00979D', label: 'Arduino' },
+  { svg: 'https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg', color: '#21759B', label: 'WordPress' },
+  { Icon: SiCanva, color: '#00C4CC', label: 'Canva' },
+];
+
+// Floating Tech Icon Component
+const FloatingTechIcon = ({ tech, index, isHovering, hoveredIndex, onHover, onHoverEnd }) => {
+  const totalIcons = TECH_ICONS.length;
+  const isHovered = isHovering && hoveredIndex === index;
+  const iconControl = useAnimationControls();
+  const [baseRadius, setBaseRadius] = useState(200);
+  const [iconSize, setIconSize] = useState(40);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Make radius and icon size responsive to screen size (only after hydration)
+  useEffect(() => {
+    setIsMounted(true);
+    
+    const updateDimensions = () => {
+      if (typeof window !== 'undefined') {
+        const width = window.innerWidth;
+        if (width < 640) {
+          setBaseRadius(100); // sm
+          setIconSize(28);
+        } else if (width < 1024) {
+          setBaseRadius(130); // md
+          setIconSize(32);
+        } else if (width < 1280) {
+          setBaseRadius(160); // lg
+          setIconSize(36);
+        } else {
+          setBaseRadius(200); // xl
+          setIconSize(40);
+        }
+      }
+    };
+    
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+  
+  // Start animation when component mounts
+  useEffect(() => {
+    iconControl.start({
+      rotate: -360,
+      transition: {
+        duration: 30,
+        repeat: Infinity,
+        ease: 'linear',
+      },
+    });
+  }, [iconControl]);
+  
+  // Handle scale on hover
+  useEffect(() => {
+    if (isHovered) {
+      iconControl.start({
+        scale: 1.5,
+        transition: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+    } else {
+      iconControl.start({
+        scale: 1,
+        transition: {
+          duration: 0.3,
+          ease: 'easeInOut',
+        },
+      });
+    }
+  }, [isHovered, iconControl]);
+  
+  // Create a seed-based pseudo-random for consistent positioning
+  const seededRandom = (seed) => {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  };
+  
+  const baseAngle = (index / totalIcons) * 360;
+  const randomAngleOffset = (seededRandom(index * 2) - 0.5) * 10; // ±30 degrees
+  const itemAngle = baseAngle + randomAngleOffset;
+  
+  // Calculate position on circle with random radius variation
+  // Use default dimensions during SSR, apply responsive ones after hydration
+  const actualRadius = isMounted ? baseRadius : 200;
+  const randomRadiusOffset = (seededRandom(index * 3) - 0.5) * 100; // ±20px
+  const radius = actualRadius + randomRadiusOffset;
+  
+  const radians = (itemAngle * Math.PI) / 180;
+  const x = Math.round(radius * Math.cos(radians) * 100) / 100;
+  const y = Math.round(radius * Math.sin(radians) * 100) / 100;
+  
+  return (
+    <div
+      className="absolute w-12 h-12 md:w-14 md:h-14 flex items-center justify-center cursor-pointer pointer-events-auto"
+      style={{
+        left: '50%',
+        top: '50%',
+        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+      }}
+      suppressHydrationWarning
+      onMouseEnter={() => onHover(index)}
+      onMouseLeave={() => onHoverEnd()}
+    >
+      <motion.div 
+        className="relative flex items-center justify-center pointer-events-auto"
+        animate={iconControl}
+        initial={{ rotate: 0, scale: 1 }}
+      >
+        {tech.Icon ? (
+          <tech.Icon 
+            size={iconSize} 
+            style={{ 
+              color: tech.color,
+              filter: isHovered 
+                ? 'drop-shadow(0 0 20px rgba(59, 130, 246, 1))' 
+                : 'drop-shadow(0 0 12px rgba(59, 130, 246, 0.5))',
+              opacity: 1,
+            }} 
+            className="transition-all duration-300"
+          />
+        ) : (
+          <Image
+            src={tech.svg}
+            alt={tech.label}
+            width={iconSize}
+            height={iconSize}
+            style={{
+              filter: isHovered 
+                ? 'drop-shadow(0 0 20px rgba(59, 130, 246, 1))' 
+                : 'drop-shadow(0 0 12px rgba(59, 130, 246, 0.5))',
+            }}
+            className="transition-all duration-300"
+          />
+        )}
+      </motion.div>
+    </div>
+  );
+};
 
 function Hero({ isMounted, fadeIn }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const phrases = ['Web Developer', 'Graphic Designer', 'IT Student', 'Game Developer'];
+  const [hoveredIconIndex, setHoveredIconIndex] = useState(null);
+  const phrases = ['Web Developer', 'Graphic Designer', 'IT Graduate', 'Game Developer'];
+
+  // Animation controls for orbit
+  const orbitControls = useAnimationControls();
 
   const vantaRef = useRef(null);
   const vantaEffect = useRef(null);
@@ -39,6 +221,18 @@ function Hero({ isMounted, fadeIn }) {
       }
     };
   }, []);
+
+  // Start orbit animation on mount
+  useEffect(() => {
+    orbitControls.start({
+      rotate: 360,
+      transition: {
+        duration: 30,
+        repeat: Infinity,
+        ease: 'linear',
+      },
+    });
+  }, [orbitControls]);
 
   // Animation variants
   const containerVariants = {
@@ -220,17 +414,38 @@ function Hero({ isMounted, fadeIn }) {
             variants={imageVariants}
             className="flex-shrink-0 flex items-center justify-center lg:justify-end order-1 lg:order-2"
           >
-            <div className="relative group">
+            <div className="relative group" style={{ perspective: '1000px' }}>
+              {/* Scattered Flying Tech Icons - Behind the image */}
+              <motion.div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto z-0"
+                animate={orbitControls}
+                initial={{ rotate: 0 }}
+              >
+                <div className="relative w-96 h-96 md:w-[30rem] md:h-[30rem] lg:w-[32rem] lg:h-[32rem] xl:w-[34rem] xl:h-[34rem]">
+                  {TECH_ICONS.map((tech, index) => (
+                    <FloatingTechIcon
+                      key={tech.label}
+                      tech={tech}
+                      index={index}
+                      isHovering={hoveredIconIndex !== null}
+                      hoveredIndex={hoveredIconIndex}
+                      onHover={setHoveredIconIndex}
+                      onHoverEnd={() => setHoveredIconIndex(null)}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+
               {/* Animated glow effect */}
-              <div className="absolute -inset-6 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 rounded-full opacity-20 blur-3xl group-hover:opacity-40 transition-all duration-700 animate-pulse" />
+              <div className="absolute -inset-6 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 rounded-full opacity-20 blur-3xl group-hover:opacity-40 transition-all duration-700 animate-pulse z-20 pointer-events-none" />
               
-              {/* Image wrapper with effects */}
-              <div className="relative">
+              {/* Image wrapper with effects - on top */}
+              <div className="relative z-30 pointer-events-none">
                 {/* Rotating background shape */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-3xl transform rotate-6 group-hover:rotate-12 transition-transform duration-700 blur-sm" />
                 
                 {/* Main Image */}
-                <div className="relative w-60 h-60 sm:w-80 sm:h-80 md:w-80 md:h-80 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
+                <div className="relative w-60 h-60 sm:w-80 sm:h-80 md:w-80 md:h-80 lg:w-80 lg:h-80 xl:w-96 xl:h-96 z-40">
                   <Image
                     src="/HeroProfileImage2.png"
                     alt="Carl Wyne S. Gallardo"
@@ -245,13 +460,13 @@ function Hero({ isMounted, fadeIn }) {
                 </div>
 
                 {/* Corner accent */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-60 blur-xl animate-pulse" />
-                <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-50 blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-60 blur-xl animate-pulse z-40" />
+                <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-50 blur-2xl animate-pulse z-40" style={{ animationDelay: '1s' }} />
               </div>
 
               {/* Floating particles effect */}
-              <div className="absolute top-1/4 -left-8 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-75" />
-              <div className="absolute bottom-1/3 -right-6 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-75" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute top-1/4 -left-8 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-75 z-40 pointer-events-none" />
+              <div className="absolute bottom-1/3 -right-6 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-75 z-40 pointer-events-none" style={{ animationDelay: '0.5s' }} />
             </div>
           </motion.div>
         </div>

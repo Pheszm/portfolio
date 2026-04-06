@@ -33,7 +33,7 @@ function Footer() {
                 Carl Wyne S. Gallardo
               </span>
             </h3>
-            <p className="text-gray-400 text-sm">Web Developer | Designer | IT Student</p>
+            <p className="text-gray-400 text-sm">Web Developer | Designer | IT Graduate</p>
           </div>
 
           {/* Social Links */}
