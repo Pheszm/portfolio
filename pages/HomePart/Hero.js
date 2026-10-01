@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useEffect, useRef, useCallback, memo } from 'react';
 import TypingWithCursor from '@/components/TypingAnimation';
 import { motion, useAnimationControls } from 'framer-motion';
 import Script from 'next/script';
@@ -183,10 +183,19 @@ const FloatingTechIcon = ({ tech, index, isHovering, hoveredIndex, onHover, onHo
   );
 };
 
+const TYPING_PHRASES = ['Web Developer', 'Graphic Designer', 'IT Graduate', 'Game Developer'];
+
 function Hero({ isMounted, fadeIn }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIconIndex, setHoveredIconIndex] = useState(null);
-  const phrases = ['Web Developer', 'Graphic Designer', 'IT Graduate', 'Game Developer'];
+
+  // Defined outside the render path: a fresh array each render used to restart
+  // the typing effect whenever anything else in the Hero re-rendered.
+  const phrases = TYPING_PHRASES;
+  const handleTypingComplete = useCallback(
+    () => setCurrentIndex((i) => (i + 1) % TYPING_PHRASES.length),
+    []
+  );
 
   // Animation controls for orbit
   const orbitControls = useAnimationControls();
@@ -345,7 +354,7 @@ function Hero({ isMounted, fadeIn }) {
                 <TypingWithCursor
                   phrases={phrases}
                   currentIndex={currentIndex}
-                  onTypingComplete={() => setCurrentIndex((i) => (i + 1) % phrases.length)}
+                  onTypingComplete={handleTypingComplete}
                 />
               </span>
             </motion.div>

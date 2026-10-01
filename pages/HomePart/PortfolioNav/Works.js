@@ -1,7 +1,8 @@
 import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { FaGamepad, FaCode, FaDesktop, FaTerminal, FaPalette, FaExternalLinkAlt, FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { FaGamepad, FaCode, FaDesktop, FaTerminal, FaPalette, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaStar } from 'react-icons/fa';
 import ViewWorksModal from './ViewWorksModal';
 
 const categoryConfig = {
@@ -38,6 +39,30 @@ const categoryConfig = {
 };
 
 const projectList = [
+    {
+        id: 14,
+        title: "Kondense CRM, Outreach & Automation Platform",
+        year: "2026",
+        description: "A multi-tenant CRM that puts pipelines, two-way texting, AI-drafted replies, workflow automation and team operations behind one login and one permission model. I am a developer on the team, working on the features assigned to me and on bug fixes across the app.",
+        category: "Web App",
+        image: "/WorksAssets/Kondense_imgs/kondense-dashboard.webp",
+        livePreview: "https://kondense.ai/",
+        // Opens a dedicated page on this site instead of the modal
+        detailPage: "/work/kondense",
+        // Flags this as a featured project — shows the star badge and a gold accent on the card
+        highlight: true,
+    },
+    {
+        id: 15,
+        title: "AI Agents Club Member Portal & Learning Platform",
+        year: "2026",
+        description: "A full member portal for an AI agency-building program, covering Whop memberships and checkout, a phased course builder with Mux video, live-build replays, a points challenge and leaderboard, a community forum and a cohort admin. 36 pages across admin and student, on Kondense's shared Supabase backend.",
+        category: "Web App",
+        image: "/WorksAssets/AIAgentsClub_imgs/ai-agents-club-dashboard.webp",
+        livePreview: "https://www.ai-agentsclub.com/",
+        detailPage: "/work/ai-agents-club",
+        highlight: true,
+    },
     {
         id: 1,
         title: "DICT Graphic Designer",
@@ -182,14 +207,28 @@ const categories = [
 ];
 
 function Works() {
+    const router = useRouter();
     const [selectedCategory, setSelectedCategory] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedWork, setSelectedWork] = useState(null);
 
+    // Projects with a `detailPage` get their own route on this site; the rest open the modal.
+    const handleProjectClick = (project) => {
+        if (project.detailPage) {
+            router.push(project.detailPage);
+            return;
+        }
+        setSelectedWork(project);
+    };
+
     const filteredProjects = (selectedCategory
         ? projectList.filter(project => project.category === selectedCategory)
         : [...projectList]
-    ).sort((a, b) => parseInt(b.year) - parseInt(a.year));
+    ).sort((a, b) => {
+        // Featured projects lead, then newest first.
+        if (!!b.highlight !== !!a.highlight) return b.highlight ? 1 : -1;
+        return parseInt(b.year) - parseInt(a.year);
+    });
 
     const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
     const paginatedProjects = filteredProjects.slice(
@@ -210,7 +249,6 @@ function Works() {
     return (
         <div className='w-full flex flex-col items-center px-2 md:px-4'>
             {/* Category Filter Tabs */}
-            <p className="text-sm text-gray-400 mb-6">(This is just a selection of my work—I'm still compiling more.)</p>
             <div className="flex flex-wrap justify-center gap-1.5 mb-8 w-full">
                 {categories.map((cat) => {
                     const isActive = selectedCategory === cat.value;
@@ -256,8 +294,12 @@ function Works() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: index * 0.1, duration: 0.3 }}
                                 whileHover={{ y: -8, scale: 1.02 }}
-                                onClick={() => setSelectedWork(project)}
-                                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
+                                onClick={() => handleProjectClick(project)}
+                                className={`group relative backdrop-blur-sm rounded-2xl overflow-hidden cursor-pointer border transition-all duration-300 ${
+                                    project.highlight
+                                        ? 'bg-amber-400/[0.07] border-amber-400/40 shadow-lg shadow-amber-500/10 hover:border-amber-300/70 hover:bg-amber-400/10 hover:shadow-2xl hover:shadow-amber-500/25'
+                                        : 'bg-white/5 border-white/10 hover:border-blue-400/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-500/20'
+                                }`}
                             >
                                 {/* Image Section */}
                                 <div className="relative h-48 overflow-hidden">
@@ -268,7 +310,7 @@ function Works() {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
-                                    
+
                                     {/* Gradient Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -278,21 +320,28 @@ function Works() {
                                         <span className="text-white text-xs font-semibold tracking-widest uppercase">Open Project</span>
                                     </div>
 
-                                    {/* Top-right corner icon */}
-                                    <div className="absolute top-3 left-3 p-1.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
-                                        <FaExternalLinkAlt className="text-white text-xs" />
-                                    </div>
+                                    {/* Featured badge — replaces the hover link icon on highlighted cards */}
+                                    {project.highlight ? (
+                                        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gradient-to-r from-amber-400 to-yellow-500 shadow-lg shadow-amber-500/40">
+                                            <FaStar className="text-white text-[11px] animate-pulse" />
+                                            <span className="text-white text-[10px] font-bold tracking-widest uppercase">
+                                                Featured
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        <div className="absolute top-3 left-3 p-1.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-300">
+                                            <FaExternalLinkAlt className="text-white text-xs" />
+                                        </div>
+                                    )}
 
-                                    {/* Year Badge */}
-                                    <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-500 to-cyan-500 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
-                                        <FaCalendarAlt className="text-white text-xs" />
-                                        <span className="text-white text-sm font-bold">{project.year}</span>
-                                    </div>
                                 </div>
 
                                 {/* Content Section */}
                                 <div className="p-5 space-y-3">
-                                    <h3 className="text-white font-bold text-lg group-hover:text-blue-400 transition-colors duration-300">
+                                    <h3 className={`flex items-start gap-2 text-white font-bold text-lg transition-colors duration-300 ${project.highlight ? 'group-hover:text-amber-300' : 'group-hover:text-blue-400'}`}>
+                                        {project.highlight && (
+                                            <FaStar className="mt-1.5 shrink-0 text-amber-400 text-sm" />
+                                        )}
                                         {project.title}
                                     </h3>
                                     

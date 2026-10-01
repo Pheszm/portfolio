@@ -1,7 +1,7 @@
 import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { FaTrophy, FaCertificate, FaCalendarAlt, FaEye, FaImages } from 'react-icons/fa';
+import { FaTrophy, FaCertificate, FaEye, FaImages } from 'react-icons/fa';
 import ViewAwardsModal from "./ViewAwardsModal";
 
 const awardList = [
@@ -326,11 +326,11 @@ function Awards() {
                                                     alt={award.title}
                                                     fill
                                                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                                                    className="object-cover transition-transform duration-500 
+                                                    className="object-cover transition-transform duration-500
                                                              group-hover:scale-110"
                                                     loading="lazy"
                                                 />
-                                                
+
                                                 {/* Gradient Overlay */}
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -357,11 +357,6 @@ function Awards() {
                                                 )}
 
                                                 {/* Year Badge */}
-                                                <div className="absolute top-3 left-3 bg-gradient-to-r from-blue-500 to-cyan-500 
-                                                               px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
-                                                    <FaCalendarAlt className="text-white text-xs" />
-                                                    <span className="text-white text-sm font-bold">{award.year}</span>
-                                                </div>
                                             </div>
 
                                             {/* Award Info */}
