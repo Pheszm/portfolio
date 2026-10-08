@@ -1,6 +1,6 @@
 import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBullseye, FaCode, FaPalette, FaDesktop, FaGamepad, FaMicrochip, FaNetworkWired } from 'react-icons/fa';
+import { FaBullseye, FaCode, FaPalette, FaDesktop, FaGamepad, FaMicrochip, FaNetworkWired, FaPlug } from 'react-icons/fa';
 import { 
   SiHtml5, 
   SiCss3, 
@@ -105,7 +105,7 @@ const skills = [
   {
     name: 'Next JS',
     icon: SiNextdotjs,
-    level: 'Advanced',
+    level: 'Expert',
     category: ['WebDev'],
     color: '#FFFFFF',
   },
@@ -213,6 +213,13 @@ const skills = [
     level: 'Advanced',
     category: ['Hardware'],
     color: '#10B981',
+  },
+  {
+    name: 'API Integration',
+    icon: FaPlug,
+    level: 'Expert',
+    category: ['WebDev'],
+    color: '#22D3EE',
   },
   {
     name: 'TypeScript',
