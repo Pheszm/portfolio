@@ -273,7 +273,7 @@ const skills = [
   {
     name: 'Claude AI',
     icon: SiAnthropic,
-    level: 'Intermediate',
+    level: 'Expert',
     category: ['WebDev'],
     color: '#D97757',
   },
