@@ -37,7 +37,7 @@ const project = {
   period: '2026 to Present',
   live: 'https://www.ai-agentsclub.com/',
   liveLabel: 'Visit ai-agentsclub.com',
-  role: 'Full Stack Developer',
+  role: 'Developer',
   category: 'Web App',
   featured: true,
   detailCover: '/WorksAssets/AIAgentsClub_imgs/ai-agents-club-dashboard.webp',
