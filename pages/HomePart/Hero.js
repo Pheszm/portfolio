@@ -19,55 +19,29 @@ import {
   SiPython, 
   SiArduino,
   SiFirebase,
-  SiCanva,
-  SiTypescript,
-  SiReact,
-  SiNodedotjs,
-  SiSupabase,
-  SiPostgresql,
-  SiFramer,
-  SiShadcnui,
-  SiAnthropic,
-  SiVercel,
-  SiGit,
-  SiWoocommerce,
-  SiElementor
+  SiCanva
 } from 'react-icons/si';
 
-// Tech stack icons that orbit around the image.
-// Kept in step with the Skills section, and interleaved so the newer web stack
-// is spread around the ring rather than bunched on one side.
+// Tech stack icons that orbit around the image
 const TECH_ICONS = [
   { Icon: SiHtml5, color: '#E34F26', label: 'HTML' },
-  { Icon: SiReact, color: '#61DAFB', label: 'React' },
   { Icon: SiCss3, color: '#1572B6', label: 'CSS' },
-  { Icon: SiTypescript, color: '#3178C6', label: 'TypeScript' },
   { Icon: SiTailwindcss, color: '#06B6D4', label: 'Tailwind' },
-  { Icon: SiSupabase, color: '#3FCF8E', label: 'Supabase' },
   { svg: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg', color: '#31A8FF', label: 'Photoshop' },
   { Icon: SiPhp, color: '#777BB4', label: 'PHP' },
-  { Icon: SiNodedotjs, color: '#5FA04E', label: 'Node.js' },
   { Icon: SiNextdotjs, color: '#FFFFFF', label: 'Next.js' },
-  { Icon: SiPostgresql, color: '#4169E1', label: 'PostgreSQL' },
   { Icon: SiPrisma, color: '#5A67D8', label: 'Prisma' },
   { Icon: SiMysql, color: '#4479A1', label: 'MySQL' },
-  { Icon: SiFramer, color: '#0055FF', label: 'Framer Motion' },
   { svg: 'https://neon.tech/favicon/favicon.svg', color: '#00E599', label: 'Neon' },
   { Icon: SiFirebase, color: '#FFCA28', label: 'Firebase' },
-  { Icon: SiVercel, color: '#FFFFFF', label: 'Vercel' },
   { Icon: SiLaravel, color: '#FF2D20', label: 'Laravel' },
   { Icon: SiJavascript, color: '#F7DF1E', label: 'JavaScript' },
-  { Icon: SiGit, color: '#F05032', label: 'Git & GitHub' },
   { Icon: SiCplusplus, color: '#00599C', label: 'C++' },
-  { Icon: SiAnthropic, color: '#D97757', label: 'Claude AI' },
   { Icon: SiLua, color: '#2C2D72', label: 'Lua' },
   { Icon: SiPython, color: '#3776AB', label: 'Python' },
-  { Icon: SiShadcnui, color: '#FFFFFF', label: 'shadcn/ui' },
   { svg: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_C_sharp.svg', color: '#239120', label: 'C#' },
   { Icon: SiArduino, color: '#00979D', label: 'Arduino' },
-  { Icon: SiWoocommerce, color: '#96588A', label: 'WooCommerce' },
   { svg: 'https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg', color: '#21759B', label: 'WordPress' },
-  { Icon: SiElementor, color: '#92003B', label: 'Elementor' },
   { Icon: SiCanva, color: '#00C4CC', label: 'Canva' },
 ];
 
@@ -154,10 +128,7 @@ const FloatingTechIcon = ({ tech, index, isHovering, hoveredIndex, onHover, onHo
   // Calculate position on circle with random radius variation
   // Use default dimensions during SSR, apply responsive ones after hydration
   const actualRadius = isMounted ? baseRadius : 200;
-  // Spread the ring into a looser cloud. With the stack now at 31 icons the
-  // angular gap is about 11 degrees, so neighbours need the extra depth
-  // variation to avoid sitting on top of one another.
-  const randomRadiusOffset = (seededRandom(index * 3) - 0.5) * 130; // ±65px
+  const randomRadiusOffset = (seededRandom(index * 3) - 0.5) * 100; // ±20px
   const radius = actualRadius + randomRadiusOffset;
   
   const radians = (itemAngle * Math.PI) / 180;
