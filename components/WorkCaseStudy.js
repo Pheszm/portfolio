@@ -21,6 +21,7 @@ import {
   FaImages,
   FaRocket,
   FaTh,
+  FaPlayCircle,
 } from 'react-icons/fa';
 
 /* ------------------------------------------------------------------ */
@@ -519,6 +520,44 @@ export default function WorkCaseStudy({ project }) {
             ))}
           </div>
         </motion.section>
+
+        {/* ---------------- Demo video (optional) ---------------- */}
+        {project.video && (
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={stagger}
+            className="pb-14 px-4 sm:px-6 md:px-10 max-w-6xl mx-auto"
+          >
+            <SectionHeading plain="Watch the" accent="Demo" icon={FaPlayCircle} />
+            {project.video.caption && (
+              <motion.p
+                variants={fadeIn}
+                className="text-center text-sm text-gray-500 -mt-4 mb-7 max-w-2xl mx-auto"
+              >
+                {project.video.caption}
+              </motion.p>
+            )}
+            <motion.div
+              variants={fadeIn}
+              className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10"
+            >
+              {/* preload="none" keeps the page light until someone presses play. */}
+              <video
+                controls
+                playsInline
+                preload="none"
+                poster={project.video.poster}
+                className="w-full h-auto block"
+              >
+                {project.video.webm && <source src={project.video.webm} type="video/webm" />}
+                {project.video.mp4 && <source src={project.video.mp4} type="video/mp4" />}
+                Your browser does not support embedded video.
+              </video>
+            </motion.div>
+          </motion.section>
+        )}
 
         {/* ---------------- Modules (optional) ---------------- */}
         {project.modules && (

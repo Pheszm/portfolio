@@ -64,6 +64,17 @@ const projectList = [
         highlight: true,
     },
     {
+        id: 16,
+        title: "Skylake Lending Program Loan Management Platform",
+        year: "2026",
+        description: "The lending system of Skylake Properties Company, built from scratch and still maintained by me. Borrowers apply and pay online, finance officers approve, disburse and verify, and a self-reconciling ledger keeps every loan, payment and peso of cash on hand in step across three role-based portals.",
+        category: "Web App",
+        image: "/WorksAssets/SkylakeLendingProgram_imgs/skylake-finance-dashboard.webp",
+        livePreview: "https://lending.skylakedmv.com",
+        detailPage: "/work/skylake-lending-program",
+        highlight: true,
+    },
+    {
         id: 1,
         title: "DICT Graphic Designer",
         year: "2026",
