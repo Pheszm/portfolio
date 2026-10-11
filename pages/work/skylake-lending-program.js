@@ -55,13 +55,6 @@ const project = {
     'Cash on hand is always current, because every disbursement and verified payment writes into the same running chain',
     'Overdue accounts surface on their own with the late fee already computed, instead of waiting for someone to notice',
   ],
-  video: {
-    webm: `${IMG}/skylake-lending-demo.webm`,
-    mp4: `${IMG}/skylake-lending-demo.mp4`,
-    poster: `${IMG}/skylake-lending-poster.jpg`,
-    caption:
-      'A walkthrough of the public site, the admin portal and the borrower and finance portals. The borrower and finance screens use the built in sample data preview, and the few live screens have their values blurred.',
-  },
   modulesNote:
     'Three portals, each with its own navigation, guarded by role at the route level.',
   modules: [
